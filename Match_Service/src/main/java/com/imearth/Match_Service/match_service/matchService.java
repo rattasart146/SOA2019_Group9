@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
 
 @Service
 public class matchService {
@@ -27,9 +28,9 @@ public class matchService {
     }
 
 
-
-    public Match searchbyid (int id){
-        return null;
+    public String searchbyid (int id){
+        Optional<Match> SomeMatch = matchRepository.findById(id);
+        return "Hello "+ SomeMatch.get().getId();
     }
 }
 
