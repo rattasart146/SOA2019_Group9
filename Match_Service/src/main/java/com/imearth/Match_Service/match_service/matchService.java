@@ -1,7 +1,6 @@
 package com.imearth.Match_Service.match_service;
 
 import com.imearth.Match_Service.match_service.model.Match;
-import com.imearth.Match_Service.match_service.repository.matchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

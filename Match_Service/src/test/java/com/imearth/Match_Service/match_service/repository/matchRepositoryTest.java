@@ -1,5 +1,6 @@
 package com.imearth.Match_Service.match_service.repository;
 
+import com.imearth.Match_Service.match_service.matchRepository;
 import com.imearth.Match_Service.match_service.model.Match;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +17,7 @@ import static org.junit.Assert.*;
 public class matchRepositoryTest {
 
     @Autowired
-    private matchRepository matchRepository;
+    private com.imearth.Match_Service.match_service.matchRepository matchRepository;
 
     @Test
     public void success_find_by_id(){
@@ -30,7 +31,7 @@ public class matchRepositoryTest {
         matchRepository.save(gamez);
 
         //find by id
-        Optional<Match> SomeId = matchRepository.findById("1");
+        Optional<Match> SomeId = matchRepository.findById(1);
 
 
         //Assert

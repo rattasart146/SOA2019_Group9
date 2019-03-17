@@ -20,16 +20,15 @@ public class matchController {
         //แสดง match ทั้งหมด
     }
 
-    /*
-    @GetMapping("/match/{id}")
-    public Match  ShowMatchdetail(@PathVariable int id){
-            matchService.
-            return new Match();
+
+    @GetMapping("/match/{id}/detail")
+    public String ShowMatchdetail(@PathVariable int id){
+            return matchservice.searchbyid(id);
         //ดูช้อมูล match
     }
 
 
-
+    /*
     @GetMapping("/match/{id}/register")
     public
     //กรอกข้อมูลสมัครเช้าร่วม match
