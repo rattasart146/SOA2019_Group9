@@ -3,7 +3,7 @@ package com.imearth.Match_Service.match_service.model;
 public class Match {
 
     private  String matchname;
-    private  int id;
+    private  String id;
     private  String owner_username;
     private  String location;
     private  String status;
@@ -11,7 +11,7 @@ public class Match {
     public Match() {
     }
 
-    public Match(String matchname, int id, String owner_username, String location, String status) {
+    public Match(String matchname, String id, String owner_username, String location, String status) {
         this.matchname = matchname;
         this.id = id;
         this.owner_username = owner_username;
@@ -27,11 +27,11 @@ public class Match {
         this.matchname = matchname;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

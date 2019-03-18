@@ -23,7 +23,7 @@ public class matchRepositoryTest {
     public void success_find_by_id(){
         //initial data in database
         Match gamez = new Match();
-        gamez.setId(1);
+        gamez.setId("1");
         gamez.setMatchname("my game");
         gamez.setOwner_username("King");
         gamez.setStatus("Openning");

@@ -15,7 +15,7 @@ public class matchServiceTest {
     @Test
     public void searchbyid (){
         Match matchstub = new Match();
-        matchstub.setId(1);
+        matchstub.setId("1");
         matchstub.setLocation("Somewhere");
         matchstub.setMatchname("My game");
         matchstub.setOwner_username("alex");
