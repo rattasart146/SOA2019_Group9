@@ -26,4 +26,12 @@ public class tourService {
 
         return tournament;
     }
+
+    public String getTourStatus() {
+        return tournament.getStatus();
+    }
+
+    public ArrayList<String> getTourTeam() {
+        return tournament.getJointeam();
+    }
 }
