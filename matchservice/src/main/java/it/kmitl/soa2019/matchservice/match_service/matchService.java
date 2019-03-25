@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class matchService {
+    private Match newmatch = new Match();
 
     private ArrayList<Match> matchList = new ArrayList<>(Arrays.asList(
             new Match("My game", "1", "somchai", "ladkrabang", "Registering"),
@@ -34,6 +35,20 @@ public class matchService {
 
     public ArrayList<Match> getAllMatch(){
         return matchList;
+    }
+
+    public Match createNewMatch() {
+        newmatch.setId("5");
+        newmatch.setLocation("Gotham");
+        newmatch.setMatchname("Big Game");
+        newmatch.setOwner_username("Batman");
+        newmatch.setStatus("Registering");
+        return newmatch;
+
+    }
+
+    public Match showCreatedMatch() {
+        return newmatch;
     }
 
 

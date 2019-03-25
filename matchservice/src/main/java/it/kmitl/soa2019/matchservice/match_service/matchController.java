@@ -2,10 +2,8 @@ package it.kmitl.soa2019.matchservice.match_service;
 
 import it.kmitl.soa2019.matchservice.match_service.match.Match;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class matchController {
 
 
     @RequestMapping(value = "/match/{id}")
-    public List<Match> getAllMatch(@PathVariable String id) {
+    public List<Match> getFindMatch(@PathVariable String id) {
         return matchservice.getMatchs(id);
     }
 
@@ -26,10 +24,20 @@ public class matchController {
 
 
     @GetMapping("/match")
-    public ArrayList<Match> getMatch( ){
+    public ArrayList<Match> getAllMatch( ){
         return matchservice.getAllMatch();
         //แสดง match ทั้งหมด
     }
+
+    @PostMapping(value = "/match/new")
+    public Match createNewMatch() {
+        return matchservice.createNewMatch();
+    }
+    @GetMapping(value = "/match/{id}/created")
+    public Match showCreatedMatch() {
+        return matchservice.showCreatedMatch();
+    }
+
 
     /*
 
