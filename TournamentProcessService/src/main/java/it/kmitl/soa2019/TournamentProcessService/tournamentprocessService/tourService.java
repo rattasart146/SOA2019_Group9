@@ -23,7 +23,6 @@ public class tourService {
     }
 
     public Tournament getTour() {
-
         return tournament;
     }
 
