@@ -52,4 +52,9 @@ public class userService {
         }
         return null;
     }
+
+    public java.util.ArrayList<String> joinNewMatch() {
+        join.add("Big Game");
+        return join;
+    }
 }
