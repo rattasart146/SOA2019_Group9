@@ -1,0 +1,37 @@
+[
+    {
+        "matchid": 1,
+        "matchname": "goldroger",
+        "owner_username": "Gol D. Roger",
+        "location": "Ladkrabang",
+        "status": "Registering"
+    },
+    {
+        "matchid": 2,
+        "matchname": "mrzero",
+        "owner_username": "Sir Crocodile",
+        "location": "Shibuya",
+        "status": "Matching"
+    },
+    {
+        "matchid": 3,
+        "matchname": "luffy",
+        "owner_username": "Monkey D. Luffy",
+        "location": "Phuket",
+        "status": "Registering"
+    },
+    {
+        "matchid": 4,
+        "matchname": "kuzan",
+        "owner_username": "Aokiji",
+        "location": "CNX",
+        "status": "Matching"
+    },
+    {
+        "matchid": 5,
+        "matchname": "shanks",
+        "owner_username": "'Red-Haired' Shanks",
+        "location": "Moon",
+        "status": "Registering"
+    }
+]
