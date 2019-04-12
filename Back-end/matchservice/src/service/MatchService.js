@@ -22,6 +22,20 @@ exports.getMatchByMatchId = (req, res) => {
     }
 }
 
+
+exports.getMatchByMatchStatus = () => {
+    var filterMatch = _.where(mockMatch, {status: (req.params.status)})
+      if (filterMatch[0] == null) {
+        return res.sendStatus(404);
+    } else {
+        return res.status(200).json(filterMatch.mockMatch);
+    }
+
+}
+
+
+
+
 exports.getAllMatch = (req, res) => {
     if (mockMatch == "") {
         return res.sendStatus(404);
