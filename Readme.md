@@ -24,30 +24,50 @@
 * จัดการทีมแข่งขัน
 
 
+### How to run Service_**
+do first
+```
+git clone https://github.com/rattasart146/SOA2019_Group9.git
+cd project folder
+```
+and then
+**matchservice**
+``` 
+cd matchservice
+node app.js
+```
+**userservice**
+```
+cd userservice
+node app.js
+```
+**processservice**
+```
+cd processservice
+node app.js
+```
+
+
  ### API Endpoint_**
 
 **_Match Service : Service ที่ใช้ค้นหา match ที่จัดขึ้นอยู่ในระบบและแสดงข้อมูลจำเพาะ_**
 ```
 GET /match แสดงข้อมูล match ทั้งหมดในระบบ
-GET /match/{id}  id เช่นเลข 1,2,3,4,5 แสดงข้อมูลเฉพาะ match นั้นๆ
-
-POST /match/new สร้างการแข่งขันใหม่
-GET /match/{id}/created แสดงการแข่งขันที่สร้างไว้
-
-*สมมติว่าดึงข้อมูลมาแล้ว
+GET /match/:matchid:  id เช่นเลข 1,2,3,4,5 แสดงข้อมูลเฉพาะ match นั้นๆ
+POST /match/newmatch สร้างการแข่งขันใหม่
 ```
 
-**_TournamentProcess Service : Service ที่ใช้จัดการเกี่ยวกับ Process ต่างๆระหว่างการแข่งขัน_**
+**_Process Service : Service ที่ใช้จัดการเกี่ยวกับ Process ต่างๆระหว่างการแข่งขัน_**
 ```
-GET /tour แสดงข้อมูลทั้งหมดของการแข่งขัน
-GET /tour/status แสดงสถานะของการแข่งขัน
-GET /tour/team แสดงรายชื่อทีมที่เข้าร่วมการแข่งขันนั้น
-*สมมติว่าดึงข้อมูลมาแล้ว
+GET /thismatch/detail แสดงข้อมูลทั้งหมดของการแข่งขัน
+GET /thismatch/status แสดงสถานะของการแข่งขัน
+GET /thismatch/owner แสดง username ของผู้จัด
+GET /thismatch/allteam แสดงรายชื่อทีมที่เข้าร่วมการแข่งขันนั้น
 ```
 
-**_User Service : Service ที่ใช้ค้นหา และแสดงข้อมูลผู้ใช้_**
+**_User Service : Service ที่ใช้ค้นหา เพิ่ม และแสดงข้อมูลผู้ใช้_**
 ```
-GET /user แสดงข้อมูลผู้ใช้
-POST /User/{id}/Match/new เพิ่ม match ใหม่  เข้าไปใน joinmatch ของ user
-*สมมติว่าดึงข้อมูลมาแล้ว
+GET /user แสดงข้อมูลผู้ใช้ทั้งหมด
+GET /user:userid: แสดงข้อมูลผู้ใช้ตาม userid
+POST /user/newuser เพิ่ม user ใหม่
 ```
