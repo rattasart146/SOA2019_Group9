@@ -22,4 +22,7 @@ router.get("/owner", processService.getOwnerUsername);
 // get all team list
 router.get("/allteam", processService.getTeamList);
 
+// get all team list
+router.post("/teamjoin", processService.postNewTeamJoin);
+
 module.exports = router;

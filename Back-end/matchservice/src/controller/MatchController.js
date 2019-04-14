@@ -12,8 +12,14 @@ router.use(bodyParser.json());
 router.get("/", matchService.getAllMatch);
 
 // Get Match Information
-router.get("/:matchid", matchService.getMatchByMatchId);
+router.get("/matchid/:matchid", matchService.getMatchByMatchId);
 
+// Get Match Information by name
+router.get("/matchname/:matchname", matchService.getMatchByMatchName);
+
+
+// Get Match By status
+router.get("/status/:status", matchService.getMatchByMatchStatus);
 
 // Post New Match
 router.post("/newmatch", matchService.postNewMatch);
