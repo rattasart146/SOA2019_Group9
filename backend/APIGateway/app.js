@@ -72,17 +72,17 @@ client.start(error => {
     })
 
     // Proxy request after authentication
-
+ 
     app.use('/api/user', (req, res, next) => {
         userServiceProxy(req, res, next)
     })
 
     app.use('/api/match', (req, res, next) => {
-        subjectServiceProxy(req, res, next)
+        matchServiceProxy(req, res, next)
     })
 
     app.use('/api/process', (req, res, next) => {
-        leaveServiceProxy(req, res, next)
+        processServiceProxy(req, res, next)
     })
 
 });
