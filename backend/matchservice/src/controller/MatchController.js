@@ -21,6 +21,11 @@ router.get("/matchname/:matchname", matchService.getMatchByMatchName);
 // Get Match By status
 router.get("/status/:status", matchService.getMatchByMatchStatus);
 
+// Get Match By owner
+router.get("/owner/:matchowner", matchService.getMatchByMatchOwner);
+
+
+
 // Post New Match
 router.post("/newmatch", matchService.postNewMatch);
 

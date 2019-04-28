@@ -49,10 +49,11 @@ client.start(error => {
     const userServiceProxy = httpProxy(userServiceUrl)
     console.log(`User-Service: ${userServiceUrl}`);
 
+
     const matchServiceInstance = client.getInstancesByAppId('match-service');
     const matchServiceUrl = `http://${matchServiceInstance[0].hostName}:${matchServiceInstance[0].port.$}`;
     const matchServiceProxy = httpProxy(matchServiceUrl)
-    console.log(`Match-Service: ${matchServiceUrl}`);
+    console.log(`match-Service: ${matchServiceUrl}`);
 
     const processServiceInstance = client.getInstancesByAppId('process-service');
     const processServiceUrl = `http://${processServiceInstance[0].hostName}:${processServiceInstance[0].port.$}`;
@@ -72,16 +73,16 @@ client.start(error => {
     })
 
     // Proxy request after authentication
- 
-    app.use('/api/user', (req, res, next) => {
+
+    app.use('/api/usergateway', (req, res, next) => {
         userServiceProxy(req, res, next)
     })
 
-    app.use('/api/match', (req, res, next) => {
+    app.use('/api/matchgateway', (req, res, next) => {
         matchServiceProxy(req, res, next)
     })
 
-    app.use('/api/process', (req, res, next) => {
+    app.use('/api/processgateway', (req, res, next) => {
         processServiceProxy(req, res, next)
     })
 
