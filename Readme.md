@@ -31,6 +31,14 @@ git clone https://github.com/rattasart146/SOA2019_Group9.git
 cd project folder
 ```
 and then
+
+
+**รัน eureka**
+``` 
+cd eureka-server
+java -jar target/eureka-server.jar
+```
+
 **matchservice**
 ``` 
 cd matchservice
@@ -47,6 +55,11 @@ cd processservice
 node app.js
 ```
 
+**รัน api gateway**
+```
+cd APIGateway
+node app.js
+```
 
  ### API Endpoint_**
 
