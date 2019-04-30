@@ -13,6 +13,7 @@
     "eureka-client": "^1.1.0",
     "eureka-js-client": "^4.4.2",
     "express": "^4.16.4",
+    "mysql": "^2.17.1",
     "underscore": "^1.9.1"
   }
 }

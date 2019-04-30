@@ -8,7 +8,7 @@ router.use(bodyParser.urlencoded({ extended : true }));
 router.use(bodyParser.json());
 
 
-// Get All detail
+// Get  detail
 router.get("/detail", processService.getThisMatchDetail);
 
 // Get status
@@ -19,10 +19,20 @@ router.get("/status", processService.getThisMatchStatus);
 router.get("/owner", processService.getOwnerUsername);
 
 
-// get all team list
-router.get("/allteam", processService.getTeamList);
+
 
 // get all team list
-router.post("/teamjoin", processService.postNewTeamJoin);
+router.get("/:matchid/allteam", processService.getTeamList);
+
+// postnew team 
+router.post("/:matchid/teamjoin", processService.postNewTeamJoin);
+
+// get all schedule list
+router.get("/:matchid/allschedule", processService.getAllSchedule);
+
+// posrtnew schedule
+router.post("/:matchid/newschedule", processService.postNewSchedule);
+
+
 
 module.exports = router;

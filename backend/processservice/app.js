@@ -49,7 +49,7 @@ client.start((error) => {
     console.log(error || 'Eureka client started');
 
     const ProcessController = require('./src/controller/ProcessController')
-    app.use("/thismatch", ProcessController);
+    app.use("/process", ProcessController);
 });
 
 
