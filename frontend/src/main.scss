@@ -1,0 +1,51 @@
+@import 'variables.scss';
+
+@font-face {
+  font-family: 'Sukhumvit set';
+  src: url(' assets/fonts/sukhumvitset-text-webfont.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Sukhumvit set';
+  src: url('assets/fonts/sukhumvitset-medium-webfont.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Sukhumvit set';
+  src: url('assets/fonts/sukhumvitset-bold-webfont.ttf') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Sukhumvit set';
+  src: url('assets/fonts/sukhumvitset-thin-webfont.ttf') format('truetype');
+  font-weight: 200;
+}
+
+.text-bold {
+  font-weight: bold;
+} 
+.text-normal {
+  font-weight: normal;
+} 
+.text-thin {
+  font-weight: 200;
+} 
+
+*{
+  font-family: 'Sukhumvit set';
+}
+
+.no- {
+  &padding {
+    padding: 0!important;
+  }
+}
+
+.font-{
+  &light {
+    font-weight: 100;
+  }
+}
