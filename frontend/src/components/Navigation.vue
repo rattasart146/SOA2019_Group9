@@ -21,11 +21,12 @@ export default {
 nav {
   position: fixed;
   width: 100%;
-  padding: 30px 140px;
+  padding: 10px 140px;
   background: white;
   z-index: 10;
   text-align: right;
   box-shadow: 0px 10px 40px rgba(0,0,0,0.1);
+  top: 0;
 }
 .logo {
   float: left;
