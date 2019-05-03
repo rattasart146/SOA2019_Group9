@@ -36,6 +36,7 @@ and then
 **รัน eureka**
 ``` 
 cd eureka-server
+mvnw clean package
 java -jar target/eureka-server.jar
 ```
 
