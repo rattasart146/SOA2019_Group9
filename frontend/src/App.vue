@@ -16,6 +16,7 @@ export default {
 <style>
 
 #app {
+  margin-top: 80px;
   font-family: Anakotmai;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

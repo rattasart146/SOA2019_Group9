@@ -102,7 +102,6 @@ export default {
 
 <style lang="scss" scoped>
 .sub-head{
-    margin-top: 80px;
     padding: 3rem;
     background-image: url(/static/img/sub-head-bg.28cb331.png);
     background-attachment: fixed;
