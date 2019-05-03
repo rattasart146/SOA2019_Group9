@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Navigation from '@/components/Navigation'
 import LoginPage from '@/pages/Login'
 import ShowtimePage from '@/pages/ShowtimePage'
+import RegisterPage from '@/pages/Register'
 
 Vue.use(Router)
 
@@ -14,6 +15,11 @@ export default new Router({
     //   name: 'Navigation',
     //   component: Navigation
     // },
+    // {
+    //   path: '/',
+    //   name: 'Login',
+    //   component: LoginPage
+    // },
     {
       path: '/',
       name: 'Login',
@@ -23,6 +29,10 @@ export default new Router({
       path: '/showtime',
       name: 'ShowtimePage',
       component: ShowtimePage
-    }
+    },
+    {
+      name: 'Register',
+      component: RegisterPage
+    },
   ]
 })
