@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Navigation from '@/components/Navigation'
 import LoginPage from '@/pages/Login'
 import ShowtimePage from '@/pages/ShowtimePage'
+import MatchDetailPage from '@/pages/MatchDetailPage'
 import RegisterPage from '@/pages/Register'
 import RegisterSuccessPage from '@/pages/RegisterSuccess'
 
@@ -41,6 +42,11 @@ export default new Router({
       path: '/showtime',
       name: 'ShowtimePage',
       component: ShowtimePage
+    },
+    {
+      path: '/match-detail',
+      name: 'MatchDetailPage',
+      component: MatchDetailPage
     },
     {
       path: '/register',
