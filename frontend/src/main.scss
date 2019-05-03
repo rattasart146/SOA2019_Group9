@@ -24,6 +24,24 @@
   font-weight: 200;
 }
 
+@font-face {
+  font-family: 'Anakotmai';
+  src: url('assets/fonts/anakotmai-medium.woff') format('truetype');
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: 'Anakotmai';
+  src: url('assets/fonts/anakotmai-bold.woff') format('truetype');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Anakotmai';
+  src: url('assets/fonts/anakotmai-light.woff') format('truetype');
+  font-weight: lighter;
+}
+
 .text-bold {
   font-weight: bold;
 } 

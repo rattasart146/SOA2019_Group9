@@ -31,6 +31,7 @@ export default new Router({
       component: ShowtimePage
     },
     {
+      path: '/register',
       name: 'Register',
       component: RegisterPage
     },
