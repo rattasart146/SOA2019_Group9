@@ -64,24 +64,32 @@ node app.js
 
  ### API Endpoint_**
 
+APIGATEWAY  localhost:3001/api/
+
 **_Match Service : Service ที่ใช้ค้นหา match ที่จัดขึ้นอยู่ในระบบและแสดงข้อมูลจำเพาะ_**
 ```
-GET /match แสดงข้อมูล match ทั้งหมดในระบบ
-GET /match/:matchid:  id เช่นเลข 1,2,3,4,5 แสดงข้อมูลเฉพาะ match นั้นๆ
-POST /match/newmatch สร้างการแข่งขันใหม่
+GET /matchgateway/match แสดงข้อมูล match ทั้งหมดในระบบ
+GET /matchgateway/match/matchid/:matchid:  id  เช่นเลข 1,2,3,4,5 แสดงข้อมูลเฉพาะ match นั้นๆ
+GET /matchgateway/match/matchname/:matchname: ค้นหาจากชื่อการแข่ง
+GET /matchgateway/match/status/:status: แสดงตามสถานะการแข่ง
+GET /matchgateway/match/owner/:matchowner: แสดงการแข่งขันที่สร้างไว้
+GET /matchgateway/match/join/:username: แสดงการแข่งขันที่เข้าร่วม
+
+POST /matchgateway/match/newmatch สร้างการแข่งขันใหม่ ต้องใส่ matchname, matchowner, match_desc, match_location, match_status, match_size
 ```
 
 **_Process Service : Service ที่ใช้จัดการเกี่ยวกับ Process ต่างๆระหว่างการแข่งขัน_**
 ```
-GET /thismatch/detail แสดงข้อมูลทั้งหมดของการแข่งขัน
-GET /thismatch/status แสดงสถานะของการแข่งขัน
-GET /thismatch/owner แสดง username ของผู้จัด
-GET /thismatch/allteam แสดงรายชื่อทีมที่เข้าร่วมการแข่งขันนั้น
+GET /processgateway/proess/allteam แสดงรายชื่อทีมที่เข้าร่วมการแข่งขันนั้น
+POST /processgateway/proess/:matchid/teamjoin เพิ่มทีมเข้าไปในการแข่ง ต้องใส่ team_name, team_contact, team_owner
+
+GET /processgateway/proess/:matchid/allschedule เช็คตารางแข่ง
+POST /processgateway/proess/:matchid/newschedule สร้างนัดหมายการแข่ง ต้องใส่ team_1_name, team_2_name, date, hr, min
 ```
 
 **_User Service : Service ที่ใช้ค้นหา เพิ่ม และแสดงข้อมูลผู้ใช้_**
 ```
 GET /user แสดงข้อมูลผู้ใช้ทั้งหมด
-GET /user:userid: แสดงข้อมูลผู้ใช้ตาม userid
-POST /user/newuser เพิ่ม user ใหม่
+GET /user/:userid: แสดงข้อมูลผู้ใช้ตาม userid
+POST /user/newuser เพิ่ม user ใหม่ ต้องใส่ username, password, firstname, lastname
 ```
