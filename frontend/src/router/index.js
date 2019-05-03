@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Navigation from '@/components/Navigation'
 import LoginPage from '@/pages/Login'
 import RegisterPage from '@/pages/Register'
+import RegisterSuccessPage from '@/pages/RegisterSuccess'
+
 
 Vue.use(Router)
 
@@ -19,10 +21,15 @@ export default new Router({
     //   name: 'Login',
     //   component: LoginPage
     // },
+    // {
+    //   path: '/',
+    //   name: 'Register',
+    //   component: RegisterPage
+    // },
     {
       path: '/',
-      name: 'Register',
-      component: RegisterPage
+      name: 'RegisterSuccess',
+      component: RegisterSuccessPage
     },
   ]
 })
