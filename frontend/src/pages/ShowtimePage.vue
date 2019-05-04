@@ -8,12 +8,21 @@
     </div>
     <div class="container">
 <h3> สวัสดีคุณ {{account.username}} </h3>
+
+
+<router-link tag="button" :to="{name: 'CreateMatch'}" class="success-button">
+                สร้างการแข่งขัน
+              </router-link>
     <div class="row">
         <div class="col-12">
           <div class="showtype-bar">
             <div class="showtype-title">
               แมตช์<span>ที่กำลังคุณสร้าง</span>
             </div>
+
+
+            
+
           </div>
         </div>
         <div class="col-4" v-for="value in matchowner"> <!-- type 1 -->
