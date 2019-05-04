@@ -7,6 +7,51 @@
       </div>
     </div>
     <div class="container">
+<h3> สวัสดีคุณ {{account.username}} </h3>
+    <div class="row">
+        <div class="col-12">
+          <div class="showtype-bar">
+            <div class="showtype-title">
+              แมตช์<span>ที่กำลังคุณสร้าง</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4" v-for="value in matchowner"> <!-- type 1 -->
+          <div class="show-box">
+            <div class="red-box">
+              <div class="red-box-title">
+                <h2><strong>{{value.matchname}} </strong></h2>
+              </div>
+              <div class="red-box-owner">
+                <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
+              </div>  
+            </div>
+            <div class="white-box">
+              <div class="white-box-location">
+                <h6>สถานที่จัดงาน</h6>
+                <h5><strong>{{value.match_location}}</strong></h5>
+              </div>
+              <div class="box-detail-bt">
+
+                <router-link :to="{ name: 'MatchDetailPage',
+                  query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
       <div class="row">
         <div class="col-12">
           <div class="showtype-bar">
@@ -119,7 +164,7 @@
 
 
     </div>
- 	</div>
+  </div>
 </template>
 
 <script>
@@ -127,7 +172,7 @@ import router from "../router";
 import axios from "axios";
 import ShowCard from '@/components/ShowCard'
 
-
+var accountObj = JSON.parse(localStorage.getItem('account'))
 
 export default {
   name: "Showtime",
@@ -138,17 +183,25 @@ export default {
   created() {
     document.title =
       ".:: Home - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
+      this.username = accountObj.username
 
       this.getMatchMatching();
       this.getMatchRegistering();
       this.getMatchEnd();
+      this.getMatchOwn();
     
   },
   data() {
     return {
+      username : [],
       matchstatusR : [],
       matchstatusM : [],
-      matchstatusE : []
+      matchstatusE : [],
+      matchowner : [],
+      account: {
+        user_id: accountObj.user_id,
+        username: accountObj.username
+      }
     };
   },
   methods: {
@@ -220,6 +273,33 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    getMatchOwn() {
+      var ownerusername = accountObj.username;
+      console.log("owner"+ownerusername)
+      const path = "http://localhost:3001/api/matchgateway/match/owner/"+ownerusername;
+      console.log(path)
+      axios
+        .get(path)
+        .then(res => {
+          var ownArray = res.data;
+          for (var ownIndex in ownArray) {
+            this.matchowner.push({
+              match_id: ownArray[ownIndex].match_id,
+              matchname: ownArray[ownIndex].matchname,
+              matchowner: ownArray[ownIndex].matchowner,
+              match_desc: ownArray[ownIndex].match_desc,
+              match_location: ownArray[ownIndex].match_location,
+              match_status: ownArray[ownIndex].match_status,
+              match_size: ownArray[ownIndex].match_size,
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+
     }
 
 
@@ -234,7 +314,7 @@ export default {
 <style lang="scss" scoped>
 .sub-head{
     padding: 3rem;
-    background-image: url('../assets/img/sub-head-bg.png');
+    background-image: url(/static/img/sub-head-bg.28cb331.png);
     background-attachment: fixed;
     background-size: cover;
     text-align: center;
