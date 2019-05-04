@@ -5,19 +5,17 @@
         <div class="col-12">
           <div class="row no-padding" id="detail-form">
             <div class="col-12 no-padding">
-              <div class="success-sign">
-                <i class="ion-checkmark"></i>
-              </div>
+              
             </div>
             <div class="col-12">
               <div class="headline-color text-bold">
                 Success!
               </div>
               <div class="content-contain text-thin">
-                การตั้งค่าของคุณถูกบันทึกเรียบร้อย
+                สมัครสมาชิกเสร็จเรียบร้อย
               </div>
-              <router-link tag="button" :to="{name: 'ProfilePage'}" class="success-button">
-                ดูโปรไฟล์ของคุณ
+              <router-link tag="button" :to="{name: 'Login'}" class="success-button">
+                ไปยังหน้าล็อกอิน
               </router-link>
             </div>
           </div>

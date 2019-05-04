@@ -51,11 +51,7 @@
                               type="submit"
                               class="btn btn-success anakotmai-medium-text"
                             >เข้าสู่ระบบ</button>
-                            <button
-                              type="button"
-                              class="btn btn-danger anakotmai-medium-text"
-                              @click="isClear()"
-                            >คืนค่า</button>
+                            
                           </form>
                         </div>
                       </div>
@@ -64,7 +60,7 @@
           </div>
 
           <div id="regis-link">
-            <p>ยังไม่มีบัญชีของ MATCHING! ? <router-link :to="{name: 'RegisterFirstPage'}"><span>สมัครเลย</span></router-link></p>
+            <p>ยังไม่มีบัญชีของ MATCHING! ? <router-link :to="{name: 'Register'}"><span>สมัครเลย</span></router-link></p>
           </div>
         </div>
          
@@ -97,7 +93,7 @@ export default {
       ".:: เข้าสู่ระบบ - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
     this.checkMessageAlert();
     if(accountObj != null) {
-      router.push({ name: 'Selection' })
+      router.push({ name: 'ShowtimePage' })
     }
   },
   data() {

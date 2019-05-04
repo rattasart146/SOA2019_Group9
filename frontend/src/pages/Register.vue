@@ -3,34 +3,43 @@
     <div class="container" id="wrap-register">
       <div class="row">
         <div class="col register-form">
+
           <div class="row form-register">
+
+
+
+
             <div class="col top-text">
               <br><h2><span class="text-bold">สมัคร</span><span class="text-thin">สมาชิก</span></h2>
             </div>
+
+             <form @submit="doRegis">
+
             <div class="col-12">
-              <input v-model="name" placeholder="ชื่อผู้ใช้" type="text" id="Username">
+              <input v-model="register.inputUsername" placeholder="ชื่อผู้ใช้" type="text" id="Username">
             </div>
             <div class="col-12">
-              <input v-model="password" placeholder="รหัสผ่าน" type="password" id="password">
+              <input v-model="register.inputPassword" placeholder="รหัสผ่าน" type="password" id="password">
             </div>
             <div class="col-12">
-              <input v-model="email" placeholder="ชื่อ นามสกุล" type="text" id="Name">
+              <input v-model="register.inputFirstname" placeholder="ชื่อ" type="text" id="Name">
             </div>
             <div class="col-12">
-              <input v-model="rePassword" placeholder="Email" type="text" id="Email">
+              <input v-model="register.inputLastname" placeholder="นามสกุล" type="text" id="Name">
             </div>
             <div class="col-12">
-              <input v-model="password" placeholder="โทรศัพท์" type="text" id="Phone">
+              <button id="regis-link" type="submit" >สมัครสมาชิก</button>
             </div>
-            <div class="col-12">
-              <input v-model="password" placeholder="ที่อยู่" type="text" id="Address">
-            </div>
-            <div class="col-12">
-              <button id="regis-link" @click="doRegis" :disabled="!isFormatAccpeted">สมัครสมาชิก</button>
-            </div>
+
+          </form>
+
           </div>
+
+
+
+
           <div id="login-link">
-              <p>มีบัญชีของ Transket แล้ว? <router-link :to="{name: 'LoginPage'}"><span>เข้าสู่ระบบ</span></router-link></p>
+              <p>มีบัญชีของ Matching! แล้ว? <router-link :to="{name: 'Login'}"><span>เข้าสู่ระบบ</span></router-link></p>
           </div>
         </div>
       </div>
@@ -39,9 +48,77 @@
 </template>
 
 <script>
-
+import axios from "axios";
+import router from "../router";
+var accountObj = JSON.parse(localStorage.getItem('account'))
 export default {
   name: "Register",
+    beforeCreate() {
+      document.body.className = "register-page";
+      if (localStorage.getItem("unAuth") == "false") {
+      localStorage.removeItem("messageAlert");
+      localStorage.removeItem("unAuth");
+    }
+  },
+  created() {
+    document.title =
+      ".:: สมัครสมาชิก - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
+
+      this.checkMessageAlert();
+      if(accountObj != null) {
+      router.push({ name: 'ShowtimePage' })
+    }
+    
+  },
+  data() {
+    return {
+      register: {
+        inputUsername: "",
+        inputPassword: "",
+        inputFirstname: "",
+        inputLastname: "",
+        messageAlert: ""
+      }
+    };
+  },
+  methods: {
+
+    postRegis(payload) {
+      const path = "http://localhost:3001/api/usergateway/user/newuser";
+      axios
+        .post(path, payload)
+        .then(res => {
+          if(res.data != "deplicate username") {
+            console.log(res)
+            router.push({ name: "RegisterSuccess" });
+
+          } else {
+            alert("ชื่อผู้ใช้ซ้ำ");
+          }
+
+        })
+        .catch(error => {
+          this.register.messageAlert = "error";
+          console.log(error);
+        });
+    },
+    doRegis(evt){
+      evt.preventDefault();
+      const payload = {
+                  username: this.register.inputUsername,
+                  password: this.register.inputPassword,
+                  firstname: this.register.inputFirstname,
+                  lastname: this.register.inputLastname
+                };
+      this.postRegis(payload);
+    },
+    checkMessageAlert() {
+      if (localStorage.getItem("unAuth") == "true") {
+        this.login.messageAlert = localStorage.getItem("messageAlert");
+        localStorage.setItem("unAuth", false);
+      }
+    }
+  }
   
 };
 </script>

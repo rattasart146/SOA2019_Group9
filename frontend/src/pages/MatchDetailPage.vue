@@ -6,7 +6,7 @@
 
     
         
-              
+            
         <div class="row">
 
            <div v-for="(value, name) in match_detail">
@@ -151,8 +151,6 @@ export default {
 
     }
 }
-
-
 
 };
 </script>
