@@ -14,7 +14,23 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'Anakotmai';
+  src: url('assets/fonts/anakotmai-medium.woff') format('woff');
+  font-weight: medium;
+}
 
+@font-face {
+  font-family: 'Anakotmai';
+  src: url('assets/fonts/anakotmai-bold.woff') format('woff');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Anakotmai';
+  src: url('assets/fonts/anakotmai-light.woff') format('woff');
+  font-weight: lighter;
+}
 #app {
   margin-top: 80px;
   font-family: Anakotmai;
