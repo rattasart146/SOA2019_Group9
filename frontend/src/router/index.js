@@ -7,6 +7,7 @@ import ShowtimePage from '@/pages/ShowtimePage'
 import MatchDetailPage from '@/pages/MatchDetailPage'
 import RegisterPage from '@/pages/Register'
 import RegisterSuccessPage from '@/pages/RegisterSuccess'
+import CreateMatch from '@/pages/CreateMatch'
 
 
 Vue.use(Router)
@@ -52,6 +53,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: RegisterPage
+    },
+    {
+      path:'/CreateMatch',
+      name: 'CreateMatch',
+      component: CreateMatch
     },
   ]
 })
