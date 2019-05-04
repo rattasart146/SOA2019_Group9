@@ -109,35 +109,51 @@ exports.postNewTeamJoin = (req, res) => {
                 message: 'Please provide team_owner'
             });
         }
-        con.query("SELECT COUNT (teamid) as countz  FROM match_team where match_id = ?", matchid, function(error, results, fields) {
-            if (error) throw error;
-            console.log(results);
-            var a = results[0].countz + ""; // simply convert a number to string
-            var b = parseInt(a); // parse the string back to a number.
-            var thissize = (b)
-            console.log(thissize);
-            console.log(matchsize, thissize);
-            if (matchsize > thissize) {
-                con.query("INSERT INTO match_team SET ? ", {
-                    match_id: matchid,
-                    team_name: team_name,
-                    team_contact: team_contact,
-                    team_owner: team_owner
-                }, function(error, results, fields) {
-                    if (error) throw error;
-                    return res.send({
-                        error: false,
-                        data: results,
-                        message: 'New team has been created successfully.'
-                    });
-                });
-            } else {
-                res.send('match full!')
-            }
+
+            con.query("SELECT team_name from match_team where team_name = ?",team_name , function(error, results, fields) {
+                console.log(results)
+                if (results.length) {
+                    return res.send("deplicate teamname");   
+                } else{
+                        con.query("SELECT COUNT (teamid) as countz  FROM match_team where match_id = ?", matchid, function(error, results, fields) {
+                            if (error) throw error;
+                            console.log(results);
+                            var a = results[0].countz + ""; // simply convert a number to string
+                            var b = parseInt(a); // parse the string back to a number.
+                            var thissize = (b)
+                            console.log(thissize);
+                            console.log(matchsize, thissize);
+                            if (matchsize > thissize) {
+                                con.query("INSERT INTO match_team SET ? ", {
+                                    match_id: matchid,
+                                    team_name: team_name,
+                                    team_contact: team_contact,
+                                    team_owner: team_owner
+                                }, function(error, results, fields) {
+                                    if (error) throw error;
+                                    return res.send({
+                                        error: false,
+                                        data: results,
+                                        message: 'New team has been created successfully.'
+                                    });
+                                });
+                            } else {
+                                res.send('match full!')
+                            }
+                        });
+
+                }
+            });
+
+
+
+        }).catch(error => {
+                    console.log(error);
         });
-    }).catch(error => {
-        console.log(error);
-    });
+
+
+
+
 }
 exports.postNewSchedule = (req, res) => {
     /*

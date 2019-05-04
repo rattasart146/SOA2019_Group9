@@ -7,12 +7,14 @@ router.use(bodyParser.urlencoded({
     extended: true
 }));
 router.use(bodyParser.json());
+/*
 // Get  detail
 router.get("/detail", processService.getThisMatchDetail);
 // Get status
 router.get("/status", processService.getThisMatchStatus);
 // get owner username
 router.get("/owner", processService.getOwnerUsername);
+*/
 // get all team list
 router.get("/:matchid/allteam", processService.getTeamList);
 // postnew team 

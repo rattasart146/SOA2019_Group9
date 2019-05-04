@@ -215,20 +215,28 @@ exports.postNewMatch = (req, res) => {
             message: 'Please provide match_size'
         });
     }
-    con.query("INSERT INTO matchs SET ? ", {
-        matchname: matchname,
-        matchowner: matchowner,
-        match_desc: match_desc,
-        match_location: match_location,
-        match_status: match_status,
-        match_size: match_size
-    }, function(error, results, fields) {
-        if (error) throw error;
-        return res.send({
-            error: false,
-            data: results,
-            message: 'New match has been created successfully.'
-        });
+    con.query("SELECT matchname from matchs where matchname = ?",matchname , function(error, results, fields) {
+        console.log(results)
+        if (results.length) {
+            return res.send("deplicate matchname");   
+        } else{
+            con.query("INSERT INTO matchs SET ? ", {
+                    matchname: matchname,
+                    matchowner: matchowner,
+                    match_desc: match_desc,
+                    match_location: match_location,
+                    match_status: match_status,
+                    match_size: match_size
+                }, function(error, results, fields) {
+                    if (error) throw error;
+                    return res.send({
+                        error: false,
+                        data: results,
+                        message: 'New match has been created successfully.'
+                    });
+                }
+                );
+        }
     });
 }
 exports.getMatchSizeByMatchID = (req, res) => {

@@ -1,6 +1,7 @@
 const mockUser = require('../../data/mockUser')
 const _ = require('underscore')
 var mysql = require('mysql');
+var sha1 = require('sha1')
 var bodyParser = require("body-parser");
 
 
@@ -131,4 +132,25 @@ exports.postNewUser = (req, res) => {
             });
         }
     });
+}
+
+
+exports.login = (req, res) => {
+    var username = req.body.username;
+    var password = req.body.password;
+    if (username && password) {
+        con.query('SELECT * FROM user WHERE username = ? AND password = ?', [username, password], function (err, results, fields) {
+            console.log(results);
+            if (results.length) {
+                console.log("Login success");
+                res.status(200).send({"user_id": results[0].user_id, "username": results[0].username, "firstname": results[0].firstname,"lastname": results[0].lastname, "isLogin": true})
+            } else {
+                res.status(200).send({"isLogin": 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง'});
+            }
+            res.end();
+        });
+    } else {
+        res.status(200).send({"isLogin": 'กรุณากรอกชื่อผู้ใช้และรหัสผ่าน'});
+        res.end();
+    }
 }
