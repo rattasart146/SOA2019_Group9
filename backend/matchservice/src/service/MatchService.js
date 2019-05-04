@@ -252,3 +252,14 @@ exports.getMatchSizeByMatchID = (req, res) => {
         return res.send(results);
     });
 }
+
+exports.postUpdateStatus = (req, res) => {
+
+    let matchid = req.params.matchid;
+    let status = req.params.status;
+    con.query('update  matchs SET match_status = ? where match_id=?',[status , matchid], function(error, results, fields) {
+        if (error) throw error;
+        return res.send(results);
+    });
+
+}

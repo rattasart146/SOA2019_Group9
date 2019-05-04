@@ -23,4 +23,9 @@ router.get("/owner/:matchowner", matchService.getMatchByMatchOwner);
 router.get("/join/:username", matchService.getMatchByJoin)
 // Post New Match
 router.post("/newmatch", matchService.postNewMatch);
+// edit match status
+router.post("/matchid/:matchid/setstatus/:status", matchService.postUpdateStatus);
+
+
+
 module.exports = router;
