@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="container">
       <div class="row mt-5">
         <div class="col-12 align-center">
@@ -76,25 +76,27 @@
           <table class="table table-dark">
             <thead>
               <tr>
-                <th scope="col">เวลา</th>
+                <th scope="col">Date</th>
                 <th scope="col">Home</th>
                 <th scope="col"></th>
                 <th scope="col">vs</th>
                 <th scope="col"></th>
                 <th scope="col">Away</th>
+                <th scope="col">Time</th>
               </tr>
             </thead>
-
-            <!-- <tbody v-for="value in match_team">  -->
-              <tr>
-                <td>09.00</td>
-                <td>Engineer</td>
-                <td>0</td>
+            
+            <tbody>
+              <tr v-for="value in match_schedule">
+                <td>{{value.date}}</td>
+                <td>{{value.team_1_name}}</td>
+                <td>{{value.team_1_score}}</td>
                 <td>-</td>
-                <td>2</td>
-                <td>Info Tech</td>
+                <td>{{value.team_2_score}}</td>
+                <td>{{value.team_2_name}}</td>
+                <td>{{value.hr}}:{{value.min}}</td>
               </tr>
-            <!-- </tbody> -->
+            </tbody>
           </table>
         </div>
 
@@ -170,8 +172,6 @@
 <script>
 import axios from 'axios'
 export default {
-
-
   name: "MatchDetailPage",
   beforeCreate() {
     
@@ -182,12 +182,14 @@ export default {
       this.match_id = this.$route.query.match_id;
       this.getMatchDetail();
       this.GetTeam();
+      this.GetSchedule();
   },
   data() {
     return {
       match_detail : [],
       match_id: null,
-      match_team : []
+      match_team : [],
+      match_schedule : []
     };
   },
   methods: {
@@ -218,6 +220,11 @@ export default {
       const path = "http://localhost:3001/api/processgateway/process/"+this.match_id+"/allteam";
       const result = await axios.get(path);
       this.match_team = result.data
+    },
+    async GetSchedule(){
+      const path = "http://localhost:3001/api/processgateway/process/"+this.match_id+"/allschedule";
+      const result = await axios.get(path);
+      this.match_schedule = result.data
 
     }
 }
