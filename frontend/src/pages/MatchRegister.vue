@@ -42,7 +42,6 @@ var accountObj = JSON.parse(localStorage.getItem('account'))
 export default {
   name: "MatchRegister",
   methods: {
-
   }
   
 };
@@ -82,7 +81,6 @@ input {
 .form-match-regis {
   padding: 60px 200px 172px;
   text-align: center;
-
   h2,
   small {
     text-align: left;
@@ -113,7 +111,6 @@ button {
       width: 100%;
   }
 }
-
 #login-link {
   background-color: $theme-gray-l;
   height: 80px;

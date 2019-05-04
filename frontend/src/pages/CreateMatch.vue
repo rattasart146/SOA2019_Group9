@@ -9,18 +9,18 @@
               <br><h2><span class="text-bold">กรอกรายละเอียด</span><span class="text-thin">การแข่งขัน</span></h2>
             </div>
 
-             <form @submit="doRegis">
+             <form @submit="doCreateMatch">
             <div class="col-12">
-              <input v-model="register.inputMatchname" placeholder="ชื่อการแข่งขัน" type="text" id="match-name">
+              <input v-model="creatematch.inputMatchname" placeholder="ชื่อการแข่งขัน" type="text" id="match-name">
             </div>
             <div class="col-12">
-              <input v-model="register.inputLocation" placeholder="สถานที่จัดการแข่งขัน" type="text" id="match-address">
+              <input v-model="creatematch.inputLocation" placeholder="สถานที่จัดการแข่งขัน" type="text" id="match-address">
             </div>
             <div class="col-12">
-              <input v-model="register.inputDesc" placeholder="รายละเอียดการแข่งขัน" type="text" id="match-detail">
+              <input v-model="creatematch.inputDesc" placeholder="รายละเอียดการแข่งขัน" type="text" id="match-detail">
             </div>
             <div class="col-12">
-              <input v-model="register.inputSize" placeholder="จำนวนทีมที่รับสมัคร" type="text" id="match-date">
+              <input v-model="creatematch.inputSize" placeholder="จำนวนทีมที่รับสมัคร" type="text" id="match-date">
             </div>
 
             <div class="row">
@@ -57,52 +57,59 @@ export default {
   },
   created() {
     document.title =
-      ".:: สมัครสมาชิก - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
+      ".:: สร้างการแข่งขัน - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
       this.checkMessageAlert();
     
   },
   data() {
     return {
-      register: {
-        inputUsername: "",
-        inputPassword: "",
-        inputFirstname: "",
-        inputLastname: "",
+      creatematch: {
+        inputMatchname: "",
+        inputLocation: "",
+        inputDesc: "",
+        inputSize: "",
         messageAlert: ""
+      },
+      account: {
+        user_id: accountObj.user_id,
+        username: accountObj.username
       }
     };
   },
   methods: {
     postRegis(payload) {
-      const path = "http://localhost:3001/api/usergateway/user/newuser";
+      const path = "http://localhost:3001/api/matchgateway/match/newmatch";
       axios
         .post(path, payload)
         .then(res => {
-          if(res.data != "deplicate username") {
+          if(res.data != "deplicate matchname") {
             console.log(res)
-            router.push({ name: "RegisterSuccess" });
+            router.push({ name: "ShowtimePage" });
           } else {
-            alert("ชื่อผู้ใช้ซ้ำ");
+            alert("ชื่อการแข่งขันซ้ำ");
           }
         })
         .catch(error => {
-          this.register.messageAlert = "error";
+          this.creatematch.messageAlert = "error";
           console.log(error);
         });
     },
-    doRegis(evt){
+    doCreateMatch(evt){
       evt.preventDefault();
+      var ownerusername = accountObj.username;
       const payload = {
-                  username: this.register.inputUsername,
-                  password: this.register.inputPassword,
-                  firstname: this.register.inputFirstname,
-                  lastname: this.register.inputLastname
+                  matchname: this.creatematch.inputMatchname,
+                  matchowner: ownerusername,
+                  match_location: this.creatematch.inputLocation,
+                  match_desc: this.creatematch.inputDesc,
+                  match_status: "registering",
+                  match_size: this.creatematch.inputSize
                 };
       this.postRegis(payload);
     },
     checkMessageAlert() {
       if (localStorage.getItem("unAuth") == "true") {
-        this.login.messageAlert = localStorage.getItem("messageAlert");
+        this.creatematch.messageAlert = localStorage.getItem("messageAlert");
         localStorage.setItem("unAuth", false);
       }
     }

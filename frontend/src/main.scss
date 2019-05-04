@@ -26,19 +26,19 @@
 
 @font-face {
   font-family: 'Anakotmai';
-  src: url('assets/fonts/anakotmai-medium.woff') format('woff');
+  src: url('assets/fonts/anakotmai-medium.woff') format('truetype');
   font-weight: medium;
 }
 
 @font-face {
   font-family: 'Anakotmai';
-  src: url('assets/fonts/anakotmai-bold.woff') format('woff');
+  src: url('assets/fonts/anakotmai-bold.woff') format('truetype');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'Anakotmai';
-  src: url('assets/fonts/anakotmai-light.woff') format('woff');
+  src: url('assets/fonts/anakotmai-light.woff') format('truetype');
   font-weight: lighter;
 }
 
@@ -46,7 +46,7 @@
   font-weight: bold;
 } 
 .text-normal {
-  font-weight: normal;
+  font-weight: medium;
 } 
 .text-thin {
   font-weight: lighter;
@@ -66,19 +66,4 @@
   &light {
     font-weight: 100;
   }
-}
-.align-left {
-  text-align: left;
-}
-
-.align-center {
-  text-align: center;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.mt-3{
-  margin-top: 3rem;
 }

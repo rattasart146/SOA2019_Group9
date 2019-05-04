@@ -13,11 +13,13 @@
 <router-link tag="button" :to="{name: 'CreateMatch'}" class="success-button">
                 สร้างการแข่งขัน
               </router-link>
+
+
     <div class="row">
         <div class="col-12">
           <div class="showtype-bar">
             <div class="showtype-title">
-              แมตช์<span>ที่กำลังคุณสร้าง</span>
+              แมตช์<span>ที่คุณสร้าง</span>
             </div>
 
 
@@ -192,8 +194,7 @@ export default {
   created() {
     document.title =
       ".:: Home - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
-      this.username = accountObj.username
-
+      this.setAccout();
       this.getMatchMatching();
       this.getMatchRegistering();
       this.getMatchEnd();
@@ -207,10 +208,7 @@ export default {
       matchstatusM : [],
       matchstatusE : [],
       matchowner : [],
-      account: {
-        user_id: accountObj.user_id,
-        username: accountObj.username
-      }
+      account: []
     };
   },
   methods: {
@@ -309,6 +307,9 @@ export default {
         });
 
 
+    },
+    setAccout(){
+      this.account = accountObj;
     }
 
 

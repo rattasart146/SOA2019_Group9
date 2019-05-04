@@ -114,7 +114,7 @@ export default {
     },
     checkMessageAlert() {
       if (localStorage.getItem("unAuth") == "true") {
-        this.login.messageAlert = localStorage.getItem("messageAlert");
+        this.register.messageAlert = localStorage.getItem("messageAlert");
         localStorage.setItem("unAuth", false);
       }
     }

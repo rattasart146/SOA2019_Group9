@@ -161,7 +161,7 @@
       </div>
     </div>
 
- 	</div>
+  </div>
 
 
 
@@ -225,15 +225,12 @@ export default {
       const path = "http://localhost:3001/api/processgateway/process/"+this.match_id+"/allschedule";
       const result = await axios.get(path);
       this.match_schedule = result.data
-
     }
 }
-
 };
 </script>
 
 <style lang="scss" scoped>
-
 table{
   text-align: center;
 }
@@ -250,4 +247,3 @@ table{
   margin-bottom: 2rem;
 }
 </style>
-

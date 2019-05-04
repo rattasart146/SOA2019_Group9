@@ -30,6 +30,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12">
+
                           <form @submit="onLogin">
                             <div class="form-group">
                               <input
@@ -128,26 +129,13 @@ export default {
           } else {
             this.login.messageAlert = "";
             localStorage.setItem("account", JSON.stringify(res.data));
-            this.getUserInformation(res.data.user_id, res.data.username);
-            router.push({ name: "ShowtimePage" });
+            console.log("show"+res.data.user_id, res.data.username)
+            router.push({ name: "ShowtimePage" })
           }
         })
         .catch(error => {
           console.log(error);
         });
-    },
-    getUserInformation(user_id, username) {
-        const path = "http://localhost:3001/api/usergateway/user/" + user_id;
-        axios
-          .get(path)
-          .then(res => {
-            localStorage.setItem("profile", JSON.stringify(res.data[0]));
-            var checkitem = localStorage.getItem('profile');
-            console.log(checkitem);
-          })
-          .catch(error => {
-            console.log(error);
-          });
     },
     onLogin(evt) {
       var sha1 = require('sha1');
