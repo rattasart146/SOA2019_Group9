@@ -15,9 +15,13 @@
             </div>
           </div>
         </div>
-            <label v-for="value in matchstatusM">
-              <div class="col-4"> <!-- type 1 -->
-                  <div class="show-box">
+        
+            <div class="col-4">
+              
+            <show-card />
+            </div>
+              <div class="col-4" v-for="value in matchstatusM"> <!-- type 1 -->
+                <div class="show-box">
                     <div class="red-box">
                       <div class="red-box-title">
                         <h2><strong>{{value.matchname}} </strong></h2>
@@ -37,10 +41,8 @@
                           query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
                       </div>
                     </div>
-                  </div>
                 </div>
-              }
-            </label>
+              </div>
       </div>
 
       <div class="row">
@@ -52,31 +54,29 @@
           </div>
         </div>
 
-        <label v-for="value in matchstatusR">
-              <div class="col-4"> <!-- type 1 -->
-                  <div class="show-box">
-                    <div class="red-box">
-                      <div class="red-box-title">
-                        <h2><strong>{{value.matchname}} </strong></h2>
-                      </div>
-                      <div class="red-box-owner">
-                        <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
-                      </div>  
-                    </div>
-                    <div class="white-box">
-                      <div class="white-box-location">
-                        <h6>สถานที่จัดงาน</h6>
-                        <h5><strong>{{value.match_location}}</strong></h5>
-                      </div>
-                      <div class="box-detail-bt">
+        <div class="col-4" v-for="value in matchstatusR"> <!-- type 1 -->
+          <div class="show-box">
+            <div class="red-box">
+              <div class="red-box-title">
+                <h2><strong>{{value.matchname}} </strong></h2>
+              </div>
+              <div class="red-box-owner">
+                <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
+              </div>  
+            </div>
+            <div class="white-box">
+              <div class="white-box-location">
+                <h6>สถานที่จัดงาน</h6>
+                <h5><strong>{{value.match_location}}</strong></h5>
+              </div>
+              <div class="box-detail-bt">
 
-                        <router-link :to="{ name: 'MatchDetailPage',
-                          query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </label>
+                <router-link :to="{ name: 'MatchDetailPage',
+                  query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
 
@@ -89,31 +89,29 @@
           </div>
         </div>
 
-        <label v-for="value in matchstatusE">
-              <div class="col-4"> <!-- type 1 -->
-                  <div class="show-box">
-                    <div class="red-box">
-                      <div class="red-box-title">
-                        <h2><strong>{{value.matchname}} </strong></h2>
-                      </div>
-                      <div class="red-box-owner">
-                        <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
-                      </div>  
-                    </div>
-                    <div class="white-box">
-                      <div class="white-box-location">
-                        <h6>สถานที่จัดงาน</h6>
-                        <h5><strong>{{value.match_location}}</strong></h5>
-                      </div>
-                      <div class="box-detail-bt">
+        <div class="col-4" v-for="value in matchstatusE"> <!-- type 1 -->
+          <div class="show-box">
+            <div class="red-box">
+              <div class="red-box-title">
+                <h2><strong>{{value.matchname}} </strong></h2>
+              </div>
+              <div class="red-box-owner">
+                <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
+              </div>  
+            </div>
+            <div class="white-box">
+              <div class="white-box-location">
+                <h6>สถานที่จัดงาน</h6>
+                <h5><strong>{{value.match_location}}</strong></h5>
+              </div>
+              <div class="box-detail-bt">
 
-                        <router-link :to="{ name: 'MatchDetailPage',
-                          query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </label>
+                <router-link :to="{ name: 'MatchDetailPage',
+                  query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
 
@@ -236,7 +234,7 @@ export default {
 <style lang="scss" scoped>
 .sub-head{
     padding: 3rem;
-    background-image: url(/static/img/sub-head-bg.28cb331.png);
+    background-image: url('../assets/img/sub-head-bg.png');
     background-attachment: fixed;
     background-size: cover;
     text-align: center;

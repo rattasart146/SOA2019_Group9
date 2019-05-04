@@ -7,39 +7,36 @@
     
         
             
-        <div class="row">
-
-           <div v-for="(value, name) in match_detail">
+        <div class="row" v-for="(value, name) in match_detail">
           <div class="col-12 ">
-            <div class="match-title">{{value.matchname}}</div>
+            <div class="match-title text-bold">{{value.matchname}}</div>
           </div>
-          <div class="col-4">
+          <div class="col-12">
+            <div class="match-date align-left">
+              <h3 class="text-normal">รายละเอียดการแข่งขัน</h3><h5>{{value.match_desc}}</h5>
+              <br>
+            </div>
+          </div>
+          <div class="col-3">
             <div class="match-location align-left">
-              <h5>สถานที่จัดงาน</h5>
-              <h5><strong>{{value.match_location}}</strong></h5>
+              <h6>สถานที่จัดงาน</h6>
+              <h4 class="text-bold"><strong>{{value.match_location}}</strong></h4>
             </div>
           </div>
-          <div class="col-4">
-            <div class="match-owner align-right">
-              <h3><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h3>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="match-date align-center">
+          <div class="col-3">
+            <div class="match-date align-left">
               <h5>สถานะการแข่ง {{value.match_status}}</h5>
             </div>
           </div>
-          <div class="col-4">
-            <div class="match-date align-center">
+          <div class="col-3">
+            <div class="match-date align-left">
               <h5>จำนวนทีมที่รับสมัคร {{value.match_size}}</h5>
             </div>
           </div>
-
-            <div class="col-4">
-            <div class="match-date align-center">
-              <h5>รายละเอียดการแข่งขัน</h5><h5>{{value.match_desc}}</h5>
+          <div class="col-3">
+            <div class="match-owner align-right">
+              <h3><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h3>
             </div>
-          </div>
           </div>
         </div>
 
@@ -158,7 +155,7 @@ export default {
 <style lang="scss" scoped>
 .sub-head{
     padding: 3rem;
-    background-image: url(/static/img/sub-head-bg.28cb331.png);
+    background-image: url('../assets/img/sub-head-bg.png');
     background-attachment: fixed;
     background-size: cover;
     color: #fff;
