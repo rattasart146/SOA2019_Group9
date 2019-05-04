@@ -15,40 +15,71 @@
             </div>
           </div>
         </div>
-        <div class="col-4"> <!-- type 1 -->
-          <div class="show-box">
-            <div class="red-box">
-              <div class="red-box-title">
-                <h2><strong>KMITL Premier League 2025 </strong></h2>
-              </div>
-              <div class="red-box-owner">
-                <h5><span>จัดโดย</span> <strong>KMITL</strong></h5>
-              </div>  
-            </div>
-            <div class="white-box">
-              <div class="white-box-location">
-                <h6>สถานที่จัดงาน</h6>
-                <h5><strong>KMITL, Bankok</strong></h5>
-              </div>
-              <div class="box-detail-bt">
-                <a href=""><h5>ดูรายละเอียด</h5></a>
-              </div>
+            <label v-for="value in matchstatusM">
+              <div class="col-4"> <!-- type 1 -->
+                  <div class="show-box">
+                    <div class="red-box">
+                      <div class="red-box-title">
+                        <h2><strong>{{value.matchname}} </strong></h2>
+                      </div>
+                      <div class="red-box-owner">
+                        <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
+                      </div>  
+                    </div>
+                    <div class="white-box">
+                      <div class="white-box-location">
+                        <h6>สถานที่จัดงาน</h6>
+                        <h5><strong>{{value.match_location}}</strong></h5>
+                      </div>
+                      <div class="box-detail-bt">
+
+                        <router-link :to="{ name: 'MatchDetailPage',
+                          query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+            </label>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="showtype-bar">
+            <div class="showtype-title">
+              แมตช์<span>ที่กำลังเปิดรับสมัคร</span>
             </div>
           </div>
         </div>
-        <div class="col-4"> <!-- type 2 -->
-          <show-card />
-        </div>
-        <div class="col-4"> <!-- type 2 -->
-          <show-card />
-        </div>
-        <div class="col-4"> <!-- type 2 -->
-          <show-card />
-        </div>
-        <div class="col-4"> <!-- type 2 -->
-          <show-card />
-        </div>
+
+        <label v-for="value in matchstatusR">
+              <div class="col-4"> <!-- type 1 -->
+                  <div class="show-box">
+                    <div class="red-box">
+                      <div class="red-box-title">
+                        <h2><strong>{{value.matchname}} </strong></h2>
+                      </div>
+                      <div class="red-box-owner">
+                        <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
+                      </div>  
+                    </div>
+                    <div class="white-box">
+                      <div class="white-box-location">
+                        <h6>สถานที่จัดงาน</h6>
+                        <h5><strong>{{value.match_location}}</strong></h5>
+                      </div>
+                      <div class="box-detail-bt">
+
+                        <router-link :to="{ name: 'MatchDetailPage',
+                          query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </label>
       </div>
+
+
       <div class="row">
         <div class="col-12">
           <div class="showtype-bar">
@@ -57,46 +88,148 @@
             </div>
           </div>
         </div>
-        <div class="col-4"> <!-- type 1 -->
-          <div class="show-box">
-            <div class="red-box">
-              <div class="red-box-title">
-                <h2><strong>KMITL Premier League 2025 </strong></h2>
-              </div>
-              <div class="red-box-owner">
-                <h5><span>จัดโดย</span> <strong>KMITL</strong></h5>
-              </div>  
-            </div>
-            <div class="white-box">
-              <div class="white-box-location">
-                <h6>สถานที่จัดงาน</h6>
-                <h5><strong>KMITL, Bankok</strong></h5>
-              </div>
-              <div class="box-detail-bt">
-                <a href=""><h5>ดูรายละเอียด</h5></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-4"> <!-- type 2 -->
-          <show-card />
-        </div>
-        <div class="col-4"> <!-- type 2 -->
-          <show-card />
-        </div>
-        <div class="col-4"> <!-- type 2 -->
-          <show-card />
-        </div>
+
+        <label v-for="value in matchstatusE">
+              <div class="col-4"> <!-- type 1 -->
+                  <div class="show-box">
+                    <div class="red-box">
+                      <div class="red-box-title">
+                        <h2><strong>{{value.matchname}} </strong></h2>
+                      </div>
+                      <div class="red-box-owner">
+                        <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
+                      </div>  
+                    </div>
+                    <div class="white-box">
+                      <div class="white-box-location">
+                        <h6>สถานที่จัดงาน</h6>
+                        <h5><strong>{{value.match_location}}</strong></h5>
+                      </div>
+                      <div class="box-detail-bt">
+
+                        <router-link :to="{ name: 'MatchDetailPage',
+                          query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </label>
       </div>
+
+
+
+
+
     </div>
  	</div>
 </template>
 
 <script>
+import router from "../router";
+import axios from "axios";
 import ShowCard from '@/components/ShowCard'
+
+
+
 export default {
   name: "Showtime",
   components: {ShowCard},
+  beforeCreate() {
+
+  },
+  created() {
+    document.title =
+      ".:: Home - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
+
+      this.getMatchMatching();
+      this.getMatchRegistering();
+      this.getMatchEnd();
+    
+  },
+  data() {
+    return {
+      matchstatusR : [],
+      matchstatusM : [],
+      matchstatusE : []
+    };
+  },
+  methods: {
+
+    getMatchMatching() {
+      const path = "http://localhost:3001/api/matchgateway/match/status/matching";
+      axios
+        .get(path)
+        .then(res => {
+          var matchingArray = res.data;
+          for (var matchingIndex in matchingArray) {
+            this.matchstatusM.push({
+              match_id: matchingArray[matchingIndex].match_id,
+              matchname: matchingArray[matchingIndex].matchname,
+              matchowner: matchingArray[matchingIndex].matchowner,
+              match_desc: matchingArray[matchingIndex].match_desc,
+              match_location: matchingArray[matchingIndex].match_location,
+              match_status: matchingArray[matchingIndex].match_status,
+              match_size: matchingArray[matchingIndex].match_size,
+            }); //มันเขียนให้เหลือบรรทัดเดียวได้ .push(matchingArray[index])
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+
+    getMatchRegistering() {
+      const path = "http://localhost:3001/api/matchgateway/match/status/registering";
+      axios
+        .get(path)
+        .then(res => {
+          var registeringArray = res.data;
+          for (var registeringIndex in registeringArray) {
+            this.matchstatusR.push({
+              match_id: registeringArray[registeringIndex].match_id,
+              matchname: registeringArray[registeringIndex].matchname,
+              matchowner: registeringArray[registeringIndex].matchowner,
+              match_desc: registeringArray[registeringIndex].match_desc,
+              match_location: registeringArray[registeringIndex].match_location,
+              match_status: registeringArray[registeringIndex].match_status,
+              match_size: registeringArray[registeringIndex].match_size,
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+
+    getMatchEnd() {
+      const path = "http://localhost:3001/api/matchgateway/match/status/end";
+      axios
+        .get(path)
+        .then(res => {
+          var endArray = res.data;
+          for (var endIndex in endArray) {
+            this.matchstatusE.push({
+              match_id: endArray[endIndex].match_id,
+              matchname: endArray[endIndex].matchname,
+              matchowner: endArray[endIndex].matchowner,
+              match_desc: endArray[endIndex].match_desc,
+              match_location: endArray[endIndex].match_location,
+              match_status: endArray[endIndex].match_status,
+              match_size: endArray[endIndex].match_size,
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+
+
+}
+
+
+
+
 };
 </script>
 

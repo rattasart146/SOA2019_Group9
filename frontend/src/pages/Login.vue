@@ -122,7 +122,7 @@ export default {
       this.login.inputPassword = "";
     },
     logins(payload) {
-      const path = "http://localhost:3001/api/user/login";
+      const path = "http://localhost:3001/api/usergateway/user/login";
       axios
         .post(path, payload)
         .then(res => {
@@ -132,21 +132,22 @@ export default {
           } else {
             this.login.messageAlert = "";
             localStorage.setItem("account", JSON.stringify(res.data));
-            this.getUserInformation(res.data.account_id, res.data.account_type);
-            router.push({ name: "Selection" });
+            this.getUserInformation(res.data.user_id, res.data.username);
+            router.push({ name: "ShowtimePage" });
           }
         })
         .catch(error => {
           console.log(error);
         });
     },
-    getUserInformation(account_id) {
-
-        const path = "http://localhost:3001/api/user/" + account_id;
+    getUserInformation(user_id, username) {
+        const path = "http://localhost:3001/api/usergateway/user/" + user_id;
         axios
           .get(path)
           .then(res => {
             localStorage.setItem("profile", JSON.stringify(res.data[0]));
+            var checkitem = localStorage.getItem('profile');
+            console.log(checkitem);
           })
           .catch(error => {
             console.log(error);
@@ -157,7 +158,7 @@ export default {
       evt.preventDefault();
       const payload = {
         username: this.login.inputUsername,
-        password: sha1(this.login.inputPassword)
+        password: this.login.inputPassword
       };
       this.logins(payload);
     }

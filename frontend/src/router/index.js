@@ -29,7 +29,7 @@ export default new Router({
     //   component: RegisterPage
     // },   
     {
-      path: '/',
+      path: '/RegisterSuccess',
       name: 'RegisterSuccess',
       component: RegisterSuccessPage
     },
