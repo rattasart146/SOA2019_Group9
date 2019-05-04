@@ -2,28 +2,19 @@
   <div id="page-creat-match" class="container-fluid">
     <div class="container" id="wrap-creat-match">
       <div class="row">
-        <div class="col creat-match-form">
+        <div class="col match-regis-form">
 
-          <div class="row form-creat-match">
+          <div class="row form-match-regis">
             <div class="col-12 top-text">
-              <br><h2><span class="text-bold">กรอกรายละเอียด</span><span class="text-thin">การแข่งขัน</span></h2>
+              <br><h2><span class="text-bold">กรอกรายละเอียด</span><span class="text-thin">ทีมของคุณ</span></h2>
             </div>
 
              <form @submit="doRegis">
             <div class="col-12">
-              <input placeholder="ชื่อการแข่งขัน" type="text" id="match-name">
+              <input placeholder="ชื่อทีม" type="text" id="team-name">
             </div>
             <div class="col-12">
-              <input placeholder="ชื่อผู้จัดการแข่งขัน ex. หน่วยงาน องค์กร" type="text" id="match-owner">
-            </div>
-            <div class="col-12">
-              <input placeholder="สถานที่จัดการแข่งขัน" type="text" id="match-address">
-            </div>
-            <div class="col-12">
-              <input placeholder="รายละเอียดการแข่งขัน" type="text" id="match-detail">
-            </div>
-            <div class="col-12">
-              <input placeholder="วันเปิด-ปิดรับสมัคร" type="text" id="match-date">
+              <input placeholder="เบอร์โทรศัพท์ติดต่อ" type="text" id="team-contact">
             </div>
             <div class="row">
                 <div class="col-3"></div>
@@ -31,7 +22,7 @@
               <button id="back-btn" type="submit" >ย้อนกลับ</button>
             </div>
             <div class="col-3">
-              <button id="create-link" type="submit" >สร้างการแข่งขัน</button>
+              <button id="regis-link" type="submit" >สมัครแข่งขัน</button>
             </div>
             <div class="col-3"></div>
             </div>
@@ -49,7 +40,7 @@ import axios from "axios";
 import router from "../router";
 var accountObj = JSON.parse(localStorage.getItem('account'))
 export default {
-  name: "CreateMatch",
+  name: "MatchRegister",
   methods: {
 
   }
@@ -88,7 +79,7 @@ input {
 .text-thin{
   color: #DC2121;
 }
-.form-creat-match {
+.form-match-regis {
   padding: 60px 200px 172px;
   text-align: center;
 
@@ -106,14 +97,14 @@ input {
     
   }
 }
-.creat-match-form{
+.match-regis-form{
     padding: 0%;
 }
 button {
   border: none;
   border-radius: 50px;
   padding: 15px;
-  &#create-link {
+  &#regis-link {
     background-color: $light-red;
     color: #fff;
     width: 100%;

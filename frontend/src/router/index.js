@@ -8,6 +8,7 @@ import MatchDetailPage from '@/pages/MatchDetailPage'
 import RegisterPage from '@/pages/Register'
 import RegisterSuccessPage from '@/pages/RegisterSuccess'
 import CreateMatch from '@/pages/CreateMatch'
+import MatchRegister from '@/pages/MatchRegister'
 
 
 Vue.use(Router)
@@ -59,5 +60,10 @@ export default new Router({
       name: 'CreateMatch',
       component: CreateMatch
     },
+    {
+      path: '/MatchRegister',
+      name: 'MatchRegister',
+      component: MatchRegister
+    }
   ]
 })
