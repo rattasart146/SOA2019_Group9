@@ -11,20 +11,18 @@
 
              <form @submit="doRegis">
             <div class="col-12">
-              <input placeholder="ชื่อการแข่งขัน" type="text" id="match-name">
+              <input v-model="register.inputMatchname" placeholder="ชื่อการแข่งขัน" type="text" id="match-name">
             </div>
             <div class="col-12">
-              <input placeholder="ชื่อผู้จัดการแข่งขัน ex. หน่วยงาน องค์กร" type="text" id="match-owner">
+              <input v-model="register.inputLocation" placeholder="สถานที่จัดการแข่งขัน" type="text" id="match-address">
             </div>
             <div class="col-12">
-              <input placeholder="สถานที่จัดการแข่งขัน" type="text" id="match-address">
+              <input v-model="register.inputDesc" placeholder="รายละเอียดการแข่งขัน" type="text" id="match-detail">
             </div>
             <div class="col-12">
-              <input placeholder="รายละเอียดการแข่งขัน" type="text" id="match-detail">
+              <input v-model="register.inputSize" placeholder="จำนวนทีมที่รับสมัคร" type="text" id="match-date">
             </div>
-            <div class="col-12">
-              <input placeholder="วันเปิด-ปิดรับสมัคร" type="text" id="match-date">
-            </div>
+
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-3">
@@ -50,8 +48,64 @@ import router from "../router";
 var accountObj = JSON.parse(localStorage.getItem('account'))
 export default {
   name: "CreateMatch",
+    beforeCreate() {
+      document.body.className = "creat-match-page";
+      if (localStorage.getItem("unAuth") == "false") {
+      localStorage.removeItem("messageAlert");
+      localStorage.removeItem("unAuth");
+    }
+  },
+  created() {
+    document.title =
+      ".:: สมัครสมาชิก - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
+      this.checkMessageAlert();
+    
+  },
+  data() {
+    return {
+      register: {
+        inputUsername: "",
+        inputPassword: "",
+        inputFirstname: "",
+        inputLastname: "",
+        messageAlert: ""
+      }
+    };
+  },
   methods: {
-
+    postRegis(payload) {
+      const path = "http://localhost:3001/api/usergateway/user/newuser";
+      axios
+        .post(path, payload)
+        .then(res => {
+          if(res.data != "deplicate username") {
+            console.log(res)
+            router.push({ name: "RegisterSuccess" });
+          } else {
+            alert("ชื่อผู้ใช้ซ้ำ");
+          }
+        })
+        .catch(error => {
+          this.register.messageAlert = "error";
+          console.log(error);
+        });
+    },
+    doRegis(evt){
+      evt.preventDefault();
+      const payload = {
+                  username: this.register.inputUsername,
+                  password: this.register.inputPassword,
+                  firstname: this.register.inputFirstname,
+                  lastname: this.register.inputLastname
+                };
+      this.postRegis(payload);
+    },
+    checkMessageAlert() {
+      if (localStorage.getItem("unAuth") == "true") {
+        this.login.messageAlert = localStorage.getItem("messageAlert");
+        localStorage.setItem("unAuth", false);
+      }
+    }
   }
   
 };
@@ -91,7 +145,6 @@ input {
 .form-creat-match {
   padding: 60px 200px 172px;
   text-align: center;
-
   h2,
   small {
     text-align: left;
@@ -122,7 +175,6 @@ button {
       width: 100%;
   }
 }
-
 #login-link {
   background-color: $theme-gray-l;
   height: 80px;
