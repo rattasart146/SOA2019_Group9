@@ -2,11 +2,6 @@
   <div class="container-fluid">
     <div class="row sub-head">
       <div class="container">
-
-
-    
-        
-            
         <div class="row" v-for="(value, name) in match_detail">
           <div class="col-12 ">
             <div class="match-title text-bold">{{value.matchname}}</div>
@@ -39,25 +34,14 @@
             </div>
           </div>
         </div>
-
-
-
       </div>
     </div>
+    
     <div class="container">
       <div class="row mt-5">
         <div class="col-12 align-center">
           <h1>รายชื่อทีม</h1>
-
-
-
-
-          <h3>Fixtures</h3>
         </div>
-
-
-
-      
         <div class="col-12">
           <table class="table table-dark">
             <thead>
@@ -74,18 +58,107 @@
                 <td>{{value.team_owner}}</td>
                 <td>{{value.team_contact}}</td>
               </tr>
-
             </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-12 align-center">
+          <h1>ตารางการแข่งขัน</h1>
+        </div>
+        <div class="col-12">
+          <h4>รอบ 8 ทีม</h4>
+        </div>
+        <div class="col-12">
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">เวลา</th>
+                <th scope="col">Home</th>
+                <th scope="col"></th>
+                <th scope="col">vs</th>
+                <th scope="col"></th>
+                <th scope="col">Away</th>
+              </tr>
+            </thead>
+
+            <!-- <tbody v-for="value in match_team">  -->
+              <tr>
+                <td>09.00</td>
+                <td>Engineer</td>
+                <td>0</td>
+                <td>-</td>
+                <td>2</td>
+                <td>Info Tech</td>
+              </tr>
+            <!-- </tbody> -->
+          </table>
+        </div>
+
+        <div class="col-12">
+          <h4>รอบรองชนะเลิศ</h4>
+        </div>
+        <div class="col-12">
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">เวลา</th>
+                <th scope="col">Home</th>
+                <th scope="col"></th>
+                <th scope="col">vs</th>
+                <th scope="col"></th>
+                <th scope="col">Away</th>
+              </tr>
+            </thead>
+
+            <!-- <tbody v-for="value in match_team">  -->
+              <tr>
+                <td>09.00</td>
+                <td>Engineer</td>
+                <td>0</td>
+                <td>-</td>
+                <td>2</td>
+                <td>Info Tech</td>
+              </tr>
+            <!-- </tbody> -->
+          </table>
+        </div>
+
+        <div class="col-12">
+          <h4>รอบชิงชนะเลิศ</h4>
+        </div>
+        <div class="col-12">
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">เวลา</th>
+                <th scope="col">Home</th>
+                <th scope="col"></th>
+                <th scope="col">vs</th>
+                <th scope="col"></th>
+                <th scope="col">Away</th>
+              </tr>
+            </thead>
+
+            <!-- <tbody v-for="value in match_team">  -->
+              <tr>
+                <td>09.00</td>
+                <td>Engineer</td>
+                <td>0</td>
+                <td>-</td>
+                <td>2</td>
+                <td>Info Tech</td>
+              </tr>
+            <!-- </tbody> -->
           </table>
         </div>
 
       </div>
-
-
-
-
     </div>
+
  	</div>
 
 
@@ -153,6 +226,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+table{
+  text-align: center;
+}
 .sub-head{
     padding: 3rem;
     background-image: url('../assets/img/sub-head-bg.png');
