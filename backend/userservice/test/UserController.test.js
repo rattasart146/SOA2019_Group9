@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 describe('/', () => {
     beforeAll(async () => {
-        console.log('change port to 3001 to test')
+        console.log('change port to 3002 to test')
     })
 
     afterAll(() => {
@@ -19,13 +19,14 @@ describe('/', () => {
 
     describe('GET /api/user/:userid with correct', () => {
         it('should return user information by id', async () => {
-            const res = await request(server).get('/1')
+            const res = await request(server).get('/4')
             expect(res.body).toEqual([
                 {
-                    "username": "PrayuthFC",
-                    "password": "12345678",
-                    "firstname": "Prayuth",
-                    "lastname": "Chan-O-Cha"
+                    "user_id":4,
+                    "username":"test1",
+                    "password":"1234",
+                    "firstname":"man",
+                    "lastname":"man"
                 }
             ])
         })
@@ -36,10 +37,11 @@ describe('/', () => {
             const res = await request(server).get('/2')
             expect(res.body).toEqual([
                 {
-                    "username": "PrayuthFC",
-                    "password": "12345678",
-                    "firstname": "Prayuth",
-                    "lastname": "Chan-O-Cha"
+                    "user_id":4,
+                    "username":"test1",
+                    "password":"1234",
+                    "firstname":"man",
+                    "lastname":"man"
                 }
             ])
         })
@@ -113,8 +115,8 @@ describe("POST LOGIN", () => {
             .request(server)
             .post("/login")
             .send({
-                username: "it59070181",
-                password: "123456789"
+                username: "test1",
+                password: "1234"
             })
             .end((err, res) => {
                 res.should.have.status(200);
