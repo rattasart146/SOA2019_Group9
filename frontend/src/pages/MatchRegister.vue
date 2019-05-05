@@ -9,25 +9,27 @@
               <br><h2><span class="text-bold">กรอกรายละเอียด</span><span class="text-thin">ทีมของคุณ</span></h2>
             </div>
 
-             <form @submit="doRegis">
+             <form @submit="doJoinMatch">
             <div class="col-12">
-              <input placeholder="ชื่อทีม" type="text" id="team-name">
+              <input v-model="matchregister.inputTeamName" placeholder="ชื่อทีมของคุณ" type="text" id="team-name">
             </div>
             <div class="col-12">
-              <input placeholder="เบอร์โทรศัพท์ติดต่อ" type="text" id="team-contact">
+              <input v-model="matchregister.inputTeamContact" placeholder="ข้อมูลติดต่อ" type="text" id="team-contact">
             </div>
+
             <div class="row">
-                <div class="col-3"></div>
-                <div class="col-3">
-              <button id="back-btn" type="submit" >ย้อนกลับ</button>
+                <div class="col-3">	</div>
+                	<router-link tag="button" :to="{name: 'MatchDetailPage',query: { match_id: value.match_id}  }" class="success-button">
+                ย้อนกลับ
+              		</router-link> 
+	            		<div class="col-3">
+              <button id="create-link" type="submit" >เข้าร่วมการแข่ง</button>
             </div>
-            <div class="col-3">
-              <button id="regis-link" type="submit" >สมัครแข่งขัน</button>
-            </div>
-            <div class="col-3"></div>
-            </div>
-    
+			            <div class="col-3"></div>
+		    </div>
           </form>
+
+
           </div>
         </div>
       </div>
@@ -40,8 +42,69 @@ import axios from "axios";
 import router from "../router";
 var accountObj = JSON.parse(localStorage.getItem('account'))
 export default {
-  name: "MatchRegister",
+  name: "matchregister",
+    beforeCreate() {
+      document.body.className = "match-register-page";
+      if (localStorage.getItem("unAuth") == "false") {
+      localStorage.removeItem("messageAlert");
+      localStorage.removeItem("unAuth");
+    }
+  },
+  created() {
+    document.title =
+      ".:: สมัครเข้าร่วมการแข่งขัน - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
+      this.checkMessageAlert();
+    
+  },
+  data() {
+    return {
+      matchregister: {
+        inputTeamName: "",
+        inputTeamContact: "",
+        messageAlert: ""
+      },
+      account: {
+        user_id: accountObj.user_id,
+        username: accountObj.username
+      }
+      this.match_id = this.$route.query.match_id;
+    };
+  },
   methods: {
+    postRegis(payload) {
+      const path = "http://localhost:3001/api/processgateway/process/"+this.match_id+"/teamjoin";
+      axios
+        .post(path, payload)
+        .then(res => {
+          if(res.data != "deplicate teamname") {
+            console.log(res)
+            alert("เข้าร่วมการแข่งสำเร็จ!");
+            router.push({ path: 'MatchDetailPage', query: { match_id: value.match_id }})
+          } else {
+            alert("ชื่อทีมของคุณซ้ำกับทีมอื่นในการแข่งขันนี้!");
+          }
+        })
+        .catch(error => {
+          this.matchregister.messageAlert = "error";
+          console.log(error);
+        });
+    },
+    doJoinMatch(evt){
+      evt.preventDefault();
+      var ownerusername = accountObj.username;
+      const payload = {
+	                    teamname: this.matchregister.inputMatchname,
+	                    teamowner: ownerusername,
+	                    team_contact: this.matchregister.inputLocation,
+                };
+      this.postRegis(payload);
+    },
+    checkMessageAlert() {
+      if (localStorage.getItem("unAuth") == "true") {
+        this.matchregister.messageAlert = localStorage.getItem("messageAlert");
+        localStorage.setItem("unAuth", false);
+      }
+    }
   }
   
 };
