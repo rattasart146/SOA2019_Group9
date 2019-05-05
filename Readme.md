@@ -75,6 +75,7 @@ GET /matchgateway/match/status/:status: แสดงตามสถานะก�
 GET /matchgateway/match/owner/:matchowner: แสดงการแข่งขันที่สร้างไว้
 GET /matchgateway/match/join/:username: แสดงการแข่งขันที่เข้าร่วม
 
+POST /matchgateway/match/matchid/:matchid/setstatus/:status อัพเดตสถานะ end , registering , matching
 POST /matchgateway/match/newmatch สร้างการแข่งขันใหม่ ต้องใส่ matchname, matchowner, match_desc, match_location, match_status, match_size
 ```
 
@@ -90,6 +91,6 @@ POST /processgateway/proess/:matchid/newschedule สร้างนัดหม�
 **_User Service : Service ที่ใช้ค้นหา เพิ่ม และแสดงข้อมูลผู้ใช้_**
 ```
 GET /user แสดงข้อมูลผู้ใช้ทั้งหมด
-GET /user/:userid: แสดงข้อมูลผู้ใช้ตาม userid
+GET /user/id/:userid: แสดงข้อมูลผู้ใช้ตาม userid
 POST /user/newuser เพิ่ม user ใหม่ ต้องใส่ username, password, firstname, lastname
 ```
