@@ -16,7 +16,10 @@ describe('/', () => {
         server.close();
         console.log('test complete & server close')
     })
+    
+    // Get All นี่ไม่รู้ต้องทำป่าว
 
+    // /id/:userid
     describe('GET /api/user/:userid with correct', () => {
         it('should return user information by id', async () => {
             const res = await request(server).get('/4')
@@ -47,8 +50,6 @@ describe('/', () => {
         })
     })
 
-    
-
     describe('GET /api/user/:userid/ NOT FOUND', () => {
         it('should return user information by id', async () => {
             const res = await request(server).get('/100')
@@ -57,6 +58,7 @@ describe('/', () => {
     })
 })
 
+// /newuser
 describe("POST NEWUSER", () => {
     it("should postNewuser success", function (done) {
         this.timeout(10000);
@@ -108,6 +110,7 @@ describe("POST NEWUSER", () => {
     });
 });
 
+// /login
 describe("POST LOGIN", () => {
     it("should login success", function (done) {
         this.timeout(10000);
