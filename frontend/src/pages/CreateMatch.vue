@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <navbar></navbar>
   <div id="page-creat-match" class="container-fluid">
     <div class="container" id="wrap-creat-match">
       <div class="row">
@@ -25,10 +27,10 @@
 
             <div class="row">
                 <div class="col-3"></div>
-                <div class="col-3">
-              <button id="back-btn" type="submit" >ย้อนกลับ</button>
-            </div>
-            <div class="col-3">
+                <router-link tag="button" :to="{name: 'ShowtimePage'}" class="success-button">
+                ย้อนกลับ
+              </router-link>
+             <div class="col-3">
               <button id="create-link" type="submit" >สร้างการแข่งขัน</button>
             </div>
             <div class="col-3"></div>
@@ -40,14 +42,19 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
 import axios from "axios";
 import router from "../router";
+import Navbar from '@/components/Navigation'
 var accountObj = JSON.parse(localStorage.getItem('account'))
 export default {
   name: "CreateMatch",
+    components: {
+    Navbar: Navbar
+  },
     beforeCreate() {
       document.body.className = "creat-match-page";
       if (localStorage.getItem("unAuth") == "false") {
@@ -84,6 +91,7 @@ export default {
         .then(res => {
           if(res.data != "deplicate matchname") {
             console.log(res)
+            alert("สร้างการแข่งขันสำเร็จ!");
             router.push({ name: "ShowtimePage" });
           } else {
             alert("ชื่อการแข่งขันซ้ำ");
@@ -91,6 +99,7 @@ export default {
         })
         .catch(error => {
           this.creatematch.messageAlert = "error";
+          alert("กรุณากรอกข้อมูลให้ครบ!");
           console.log(error);
         });
     },
@@ -105,6 +114,7 @@ export default {
                   match_status: "registering",
                   match_size: this.creatematch.inputSize
                 };
+                 console.log("payload"+payload.teamname);
       this.postRegis(payload);
     },
     checkMessageAlert() {

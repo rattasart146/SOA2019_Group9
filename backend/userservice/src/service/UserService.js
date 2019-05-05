@@ -113,7 +113,8 @@ exports.postNewUser = (req, res) => {
     con.query("SELECT username from user where username = ?",username , function(error, results, fields) {
     	console.log(results)
         if (results.length) {
-        	return res.send("deplicate username");   
+        	return res.send("deplicate username");
+            
         }
 
         else{

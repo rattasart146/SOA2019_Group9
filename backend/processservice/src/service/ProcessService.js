@@ -110,7 +110,7 @@ exports.postNewTeamJoin = (req, res) => {
             });
         }
 
-            con.query("SELECT team_name from match_team where team_name = ?",team_name , function(error, results, fields) {
+            con.query("SELECT team_name from match_team where team_name = ? AND match_id =? ",[team_name, matchid ], function(error, results, fields) {
                 console.log(results)
                 if (results.length) {
                     return res.send("deplicate teamname");   

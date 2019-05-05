@@ -30,7 +30,6 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-
                           <form @submit="onLogin">
                             <div class="form-group">
                               <input
@@ -79,7 +78,7 @@
 <script>
 import axios from "axios";
 import router from "../router";
-var accountObj = JSON.parse(localStorage.getItem('account'))
+var accountObj;
 export default {
   name: "Login",
   beforeCreate() {
@@ -88,12 +87,17 @@ export default {
       localStorage.removeItem("messageAlert");
       localStorage.removeItem("unAuth");
     }
+    if(accountObj) {
+      router.push({ name: 'ShowtimePage' })
+    }
+    accountObj = JSON.parse(localStorage.getItem('account'))
   },
   created() {
     document.title =
       ".:: เข้าสู่ระบบ - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
     this.checkMessageAlert();
-    if(accountObj != null) {
+    accountObj = JSON.parse(localStorage.getItem('account'))
+    if(accountObj) {
       router.push({ name: 'ShowtimePage' })
     }
   },
@@ -129,13 +133,30 @@ export default {
           } else {
             this.login.messageAlert = "";
             localStorage.setItem("account", JSON.stringify(res.data));
-            console.log("show"+res.data.user_id, res.data.username)
-            router.push({ name: "ShowtimePage" })
+            var id = res.data.user_id;
+            var name = res.data.username;
+            console.log("id+name"+id, name);
+            this.getUserInformation(id);
+            console.log("username = "+res.data.username);
           }
         })
         .catch(error => {
           console.log(error);
         });
+    },
+    getUserInformation(user_id) {
+        console.log("info get id"+user_id);
+         const path =
+          "http://localhost:3001/api/usergateway/user/id/" + user_id;
+        axios
+          .get(path)
+          .then(res => {
+            localStorage.setItem("profile", JSON.stringify(res.data[0]));
+            router.push({ name: "ShowtimePage" });
+          })
+          .catch(error => {
+            console.log(error);
+          });
     },
     onLogin(evt) {
       var sha1 = require('sha1');
@@ -153,7 +174,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/variables.scss";
-
 .box{
   padding: 0%;
 }
@@ -242,9 +262,6 @@ export default {
   margin-top: 80px;
   background: #fff;
 }
-
-
-
 .signin-form {
   padding: 10% 15%;
 }
@@ -423,6 +440,4 @@ select.form-control-input:focus::-ms-value {
   display: block;
   width: 100%;
 }
-
-
 </style>

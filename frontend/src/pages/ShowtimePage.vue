@@ -1,4 +1,6 @@
 <template>
+  <div>
+  <navbar></navbar>
   <div class="container-fluid">
     <div class="row nav-margin">
       <div class="col-12 sub-head">
@@ -7,12 +9,7 @@
       </div>
     </div>
     <div class="container">
-<h3> สวัสดีคุณ {{account.username}} </h3>
 
-
-<router-link tag="button" :to="{name: 'CreateMatch'}" class="success-button">
-                สร้างการแข่งขัน
-              </router-link>
 
 
     <div class="row">
@@ -53,6 +50,39 @@
       </div>
 
 
+<div class="row">
+        <div class="col-12">
+          <div class="showtype-bar">
+            <div class="showtype-title">
+              แมตช์<span>ที่คุณเข้าร่วม</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4" v-for="value in matchjoin"> <!-- type 1 -->
+          <div class="show-box">
+            <div class="red-box">
+              <div class="red-box-title">
+                <h2><strong>{{value.matchname}} </strong></h2>
+              </div>
+              <div class="red-box-owner">
+                <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
+              </div>  
+            </div>
+            <div class="white-box">
+              <div class="white-box-location">
+                <h6>สถานที่จัดงาน</h6>
+                <h5><strong>{{value.match_location}}</strong></h5>
+              </div>
+              <div class="box-detail-bt">
+
+                <router-link :to="{ name: 'MatchDetailPage',
+                  query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 
 
@@ -72,10 +102,6 @@
           </div>
         </div>
         
-            <div class="col-4">
-              
-            <show-card />
-            </div>
               <div class="col-4" v-for="value in matchstatusM"> <!-- type 1 -->
                 <div class="show-box">
                     <div class="red-box">
@@ -176,20 +202,28 @@
 
     </div>
   </div>
+
+
+</div>
 </template>
 
 <script>
+import Navbar from '@/components/Navigation'
 import router from "../router";
 import axios from "axios";
-import ShowCard from '@/components/ShowCard'
 
-var accountObj = JSON.parse(localStorage.getItem('account'))
+var accountObj;
 
 export default {
   name: "Showtime",
-  components: {ShowCard},
+  components: {
+    Navbar: Navbar
+  },
   beforeCreate() {
-
+    accountObj = JSON.parse(localStorage.getItem('account'));
+    if (!accountObj){
+      router.push({ name: "Login" });
+    }
   },
   created() {
     document.title =
@@ -199,6 +233,7 @@ export default {
       this.getMatchRegistering();
       this.getMatchEnd();
       this.getMatchOwn();
+      this.getMatchJoin();
     
   },
   data() {
@@ -207,6 +242,7 @@ export default {
       matchstatusR : [],
       matchstatusM : [],
       matchstatusE : [],
+      matchjoin : [],
       matchowner : [],
       account: []
     };
@@ -235,6 +271,7 @@ export default {
           console.log(error);
         });
     },
+
 
     getMatchRegistering() {
       const path = "http://localhost:3001/api/matchgateway/match/status/registering";
@@ -290,6 +327,7 @@ export default {
         .get(path)
         .then(res => {
           var ownArray = res.data;
+          console.log("own array"+ownArray);
           for (var ownIndex in ownArray) {
             this.matchowner.push({
               match_id: ownArray[ownIndex].match_id,
@@ -310,6 +348,39 @@ export default {
     },
     setAccout(){
       this.account = accountObj;
+    },
+    getMatchJoin() {
+      var joinusername = accountObj.username;
+      const path = "http://localhost:3001/api/matchgateway/match/join/"+joinusername;
+      console.log(path)
+      axios
+        .get(path)
+        .then(res => {
+              var joinArray = res.data;
+          console.log("join array"+joinArray);
+          for (var joinIndex in joinArray) {
+            this.matchjoin.push({
+              match_id: joinArray[joinIndex].match_id,
+              matchname: joinArray[joinIndex].matchname,
+              matchowner: joinArray[joinIndex].matchowner,
+              match_desc: joinArray[joinIndex].match_desc,
+              match_location: joinArray[joinIndex].match_location,
+              match_status: joinArray[joinIndex].match_status,
+              match_size: joinArray[joinIndex].match_size,
+            });
+          }      
+
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+
+
+
+
+
+
     }
 
 

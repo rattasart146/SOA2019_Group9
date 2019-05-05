@@ -1,17 +1,57 @@
 <template>
   <nav>
-            <div class="logo">MATCHING<span>!</span></div>
+            <router-link  :to="{name: 'ShowtimePage'}" class="logo">MATCHING!<span>!</span></router-link>
 
-            <ul class="menu-area">
-              <button class="btn log-in-btn">เข้าสู่ระบบ</button>
-              <button class="btn sign-up-btn">สมัครสมาชิก</button>
-            </ul>
+            <h3> สวัสดีคุณ </h3><h2>  {{this.navbar.username}} </h2>
+
+              <router-link tag="button" :to="{name: 'CreateMatch'}" class="success-button">
+                สร้างการแข่งขัน
+              </router-link>
+              <router-link tag="button" :to="'#'" v-on:click.native="Logout" class="success-button">ออกจากระบบ</router-link>
+            
+
+
+
         </nav>
 </template>
 
 <script>
+
+import router from "../router";
+var accountObj = JSON.parse(localStorage.getItem('account'));
 export default {
     name: 'Navigation',
+  data() {
+    return {
+      navbar: {
+        username: "",
+      }
+    };
+  },
+  beforeCreate() {
+  },
+  methods: {
+    getUser() {
+      this.navbar.username = accountObj.username;
+      console.log()
+    },
+    isAuth() {
+      if (!accountObj) {
+        localStorage.setItem("messageAlert", "กรุณาเข้าสู่ระบบก่อนใช้งาน");
+        localStorage.setItem("unAuth", true);
+        router.push({ name: "Login" });
+      } else {
+        this.getUser();
+      }
+    },
+    Logout() {
+      localStorage.clear();
+      router.push({ name: "Login" });
+    }
+  },
+  created() {
+    this.isAuth();
+  }
 }
 </script>
 

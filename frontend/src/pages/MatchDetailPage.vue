@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <navbar></navbar>
+
   <div class="container-fluid">
     <div class="row sub-head">
       <div class="container">
@@ -36,6 +39,11 @@
         </div>
       </div>
     </div>
+            <div class="row" v-for="(value,name) in match_detail"> 
+             <router-link  tag="button" :to="{name: 'MatchRegister',query: { match_id: value.match_id}  }" class="success-button">
+                เข้าร่วมการแข่งขันนี้
+              </router-link>
+            </div>
 
     <div class="container">
       <div class="row mt-5">
@@ -166,14 +174,27 @@
 
 
 
-
+</div>
 </template>
 
 <script>
-import axios from 'axios'
+import Navbar from '@/components/Navigation'
+import router from "../router";
+import axios from "axios";
+
+var accountObj;
+
+
 export default {
   name: "MatchDetailPage",
+  components: {
+    Navbar: Navbar
+  },
   beforeCreate() {
+    accountObj = JSON.parse(localStorage.getItem('account'));
+    if (!accountObj){
+      router.push({ name: "Login" });
+    }
     
   },
   created() {
@@ -225,6 +246,9 @@ export default {
       const path = "http://localhost:3001/api/processgateway/process/"+this.match_id+"/allschedule";
       const result = await axios.get(path);
       this.match_schedule = result.data
+    },
+    setAccout(){
+      this.account = accountObj;
     }
 }
 };

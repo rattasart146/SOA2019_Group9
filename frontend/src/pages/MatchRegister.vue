@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <navbar></navbar>
   <div id="page-creat-match" class="container-fluid">
     <div class="container" id="wrap-creat-match">
       <div class="row">
@@ -18,15 +20,15 @@
             </div>
 
             <div class="row">
-                <div class="col-3">	</div>
-                	<router-link tag="button" :to="{name: 'MatchDetailPage',query: { match_id: value.match_id}  }" class="success-button">
+                <div class="col-3"> </div>
+                  <router-link tag="button" :to="{name: 'MatchDetailPage',query: { match_id: this.match_id}  }" class="success-button">
                 ย้อนกลับ
-              		</router-link> 
-	            		<div class="col-3">
-              <button id="create-link" type="submit" >เข้าร่วมการแข่ง</button>
+                  </router-link> 
+                  <div class="col-3">
+              <button id="regis-link" type="submit" >เข้าร่วมการแข่ง</button>
             </div>
-			            <div class="col-3"></div>
-		    </div>
+                  <div class="col-3"></div>
+        </div>
           </form>
 
 
@@ -35,14 +37,19 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
+import Navbar from '@/components/Navigation'
 import axios from "axios";
 import router from "../router";
 var accountObj = JSON.parse(localStorage.getItem('account'))
 export default {
   name: "matchregister",
+    components: {
+    Navbar: Navbar
+  },
     beforeCreate() {
       document.body.className = "match-register-page";
       if (localStorage.getItem("unAuth") == "false") {
@@ -54,10 +61,13 @@ export default {
     document.title =
       ".:: สมัครเข้าร่วมการแข่งขัน - ระบบ Matching! | จัดแข่งกีฬาฟุตบอล ::.";
       this.checkMessageAlert();
-    
+      this.match_id = this.$route.query.match_id;
+      console.log("showid "+this.match_id)
+      
   },
   data() {
     return {
+      match_id: null,
       matchregister: {
         inputTeamName: "",
         inputTeamContact: "",
@@ -67,7 +77,7 @@ export default {
         user_id: accountObj.user_id,
         username: accountObj.username
       }
-      this.match_id = this.$route.query.match_id;
+      
     };
   },
   methods: {
@@ -79,7 +89,7 @@ export default {
           if(res.data != "deplicate teamname") {
             console.log(res)
             alert("เข้าร่วมการแข่งสำเร็จ!");
-            router.push({ path: 'MatchDetailPage', query: { match_id: value.match_id }})
+            router.push({ name: 'MatchDetailPage', query: { match_id: this.match_id }})
           } else {
             alert("ชื่อทีมของคุณซ้ำกับทีมอื่นในการแข่งขันนี้!");
           }
@@ -92,11 +102,15 @@ export default {
     doJoinMatch(evt){
       evt.preventDefault();
       var ownerusername = accountObj.username;
+      console.log("ownerusername"+ownerusername);
+      console.log("inputMatchname"+this.matchregister.inputTeamName);
+      console.log("team_contact"+this.matchregister.inputTeamContact);
       const payload = {
-	                    teamname: this.matchregister.inputMatchname,
-	                    teamowner: ownerusername,
-	                    team_contact: this.matchregister.inputLocation,
+                      team_name: this.matchregister.inputTeamName,
+                      team_owner: ownerusername,
+                      team_contact: this.matchregister.inputTeamContact, 
                 };
+                console.log("paylod"+payload.teamname);
       this.postRegis(payload);
     },
     checkMessageAlert() {

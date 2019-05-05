@@ -10,7 +10,7 @@ router.use(bodyParser.json());
 // Get All 
 router.get("/", userService.getAllUser);
 // Get User Information
-router.get("/:userid", userService.getUserByUserId);
+router.get("/id/:userid", userService.getUserByUserId);
 // Post New User
 router.post("/newuser", userService.postNewUser);
 

@@ -134,16 +134,55 @@ exports.getMatchByMatchOwner = (req, res) => {
 }
 //แสดง match ที่ user ไปเข้าร่วมไว้
 exports.getMatchByJoin = (req, res) => {
+
     let username = req.params.username;
-    axios.get('http://localhost:3001/api/processgateway/process/getallteamowner').then(response => {
+    axios.get('http://localhost:3001/api/processgateway/process/getmatchidfromteamowner/'+username).then(response => {
         console.log(response.data.url);
         console.log(response.data.explanation);
+        console.log(response.data);
         var allteamowner = response.data;
-        var results = _.find(allteamowner, function(q) {
-            return q.team_owner.match(username)
-        });
-        console.log(results);
-        return res.send(results);
+        var thisjoin = [];
+        var thiscount = 0;
+        var limitcount = 0;
+
+        for (match_id in allteamowner){
+            limitcount+=1;
+        }
+        const finallimit = limitcount;
+        for (match_id in allteamowner){
+            var thismId = allteamowner[match_id].match_id;
+            console.log("thismid : "+thismId)
+            con.query('SELECT * FROM matchs where match_id =?', thismId , function(error, results, fields) {
+                var  nmatch_id = results[0].match_id;
+                var  nmatchname =  results[0].matchname;
+                var  nmatchowner =  results[0].matchowner;
+                var  nmatch_desc =  results[0].match_desc;
+                var  nmatch_location =  results[0].match_location;
+                var  nmatch_status =  results[0].match_status;
+                var  nmatch_size =  results[0].match_size;
+                thisjoin.push({
+                    match_id : nmatch_id,
+                    matchname : nmatchname,
+                    matchowner : nmatchowner,
+                    match_desc : nmatch_desc,
+                    match_location : nmatch_location,
+                    match_status :nmatch_status,
+                    match_size : nmatch_size
+                });
+                thiscount+=1;
+                //if (error) throw error;
+
+                var newlimit = finallimit;
+                if (thiscount !=newlimit){
+                    console.log("this is !=");
+                } else{
+                    return res.send(thisjoin);
+                }
+            });
+
+
+        }
+        
     }).catch(error => {
         console.log(error);
         return res.send(error);
