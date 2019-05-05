@@ -12,86 +12,6 @@
 
 
 
-    <div class="row">
-        <div class="col-12">
-          <div class="showtype-bar">
-            <div class="showtype-title">
-              แมตช์<span>ที่คุณสร้าง</span>
-            </div>
-
-
-            
-
-          </div>
-        </div>
-        <div class="col-4" v-for="value in matchowner"> <!-- type 1 -->
-          <div class="show-box">
-            <div class="red-box">
-              <div class="red-box-title">
-                <h2><strong>{{value.matchname}} </strong></h2>
-              </div>
-              <div class="red-box-owner">
-                <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
-              </div>  
-            </div>
-            <div class="white-box">
-              <div class="white-box-location">
-                <h6>สถานที่จัดงาน</h6>
-                <h5><strong>{{value.match_location}}</strong></h5>
-              </div>
-              <div class="box-detail-bt">
-
-                <router-link :to="{ name: 'MatchDetailPage',
-                  query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-<div class="row">
-        <div class="col-12">
-          <div class="showtype-bar">
-            <div class="showtype-title">
-              แมตช์<span>ที่คุณเข้าร่วม</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-4" v-for="value in matchjoin"> <!-- type 1 -->
-          <div class="show-box">
-            <div class="red-box">
-              <div class="red-box-title">
-                <h2><strong>{{value.matchname}} </strong></h2>
-              </div>
-              <div class="red-box-owner">
-                <h5><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h5>
-              </div>  
-            </div>
-            <div class="white-box">
-              <div class="white-box-location">
-                <h6>สถานที่จัดงาน</h6>
-                <h5><strong>{{value.match_location}}</strong></h5>
-              </div>
-              <div class="box-detail-bt">
-
-                <router-link :to="{ name: 'MatchDetailPage',
-                  query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
-
-
-
-
-
-
 
       <div class="row">
         <div class="col-12">
@@ -232,9 +152,7 @@ export default {
       this.getMatchMatching();
       this.getMatchRegistering();
       this.getMatchEnd();
-      this.getMatchOwn();
-      this.getMatchJoin();
-    
+
   },
   data() {
     return {
@@ -318,69 +236,8 @@ export default {
           console.log(error);
         });
     },
-    getMatchOwn() {
-      var ownerusername = accountObj.username;
-      console.log("owner"+ownerusername)
-      const path = "http://localhost:3001/api/matchgateway/match/owner/"+ownerusername;
-      console.log(path)
-      axios
-        .get(path)
-        .then(res => {
-          var ownArray = res.data;
-          console.log("own array"+ownArray);
-          for (var ownIndex in ownArray) {
-            this.matchowner.push({
-              match_id: ownArray[ownIndex].match_id,
-              matchname: ownArray[ownIndex].matchname,
-              matchowner: ownArray[ownIndex].matchowner,
-              match_desc: ownArray[ownIndex].match_desc,
-              match_location: ownArray[ownIndex].match_location,
-              match_status: ownArray[ownIndex].match_status,
-              match_size: ownArray[ownIndex].match_size,
-            });
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-
-
-    },
     setAccout(){
       this.account = accountObj;
-    },
-    getMatchJoin() {
-      var joinusername = accountObj.username;
-      const path = "http://localhost:3001/api/matchgateway/match/join/"+joinusername;
-      console.log(path)
-      axios
-        .get(path)
-        .then(res => {
-              var joinArray = res.data;
-          console.log("join array"+joinArray);
-          for (var joinIndex in joinArray) {
-            this.matchjoin.push({
-              match_id: joinArray[joinIndex].match_id,
-              matchname: joinArray[joinIndex].matchname,
-              matchowner: joinArray[joinIndex].matchowner,
-              match_desc: joinArray[joinIndex].match_desc,
-              match_location: joinArray[joinIndex].match_location,
-              match_status: joinArray[joinIndex].match_status,
-              match_size: joinArray[joinIndex].match_size,
-            });
-          }      
-
-        })
-        .catch(error => {
-          console.log(error);
-        });
-
-
-
-
-
-
-
     }
 
 

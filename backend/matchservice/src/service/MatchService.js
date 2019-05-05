@@ -137,9 +137,6 @@ exports.getMatchByJoin = (req, res) => {
 
     let username = req.params.username;
     axios.get('http://localhost:3001/api/processgateway/process/getmatchidfromteamowner/'+username).then(response => {
-        console.log(response.data.url);
-        console.log(response.data.explanation);
-        console.log(response.data);
         var allteamowner = response.data;
         var thisjoin = [];
         var thiscount = 0;
@@ -151,7 +148,6 @@ exports.getMatchByJoin = (req, res) => {
         const finallimit = limitcount;
         for (match_id in allteamowner){
             var thismId = allteamowner[match_id].match_id;
-            console.log("thismid : "+thismId)
             con.query('SELECT * FROM matchs where match_id =?', thismId , function(error, results, fields) {
                 var  nmatch_id = results[0].match_id;
                 var  nmatchname =  results[0].matchname;
@@ -171,10 +167,8 @@ exports.getMatchByJoin = (req, res) => {
                 });
                 thiscount+=1;
                 //if (error) throw error;
-
                 var newlimit = finallimit;
                 if (thiscount !=newlimit){
-                    console.log("this is !=");
                 } else{
                     return res.send(thisjoin);
                 }

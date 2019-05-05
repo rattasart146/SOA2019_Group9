@@ -4,6 +4,15 @@
 
             <h3> สวัสดีคุณ </h3><h2>  {{this.navbar.username}} </h2>
 
+             <router-link tag="button" :to="{name: 'MatchJoin'}" class="success-button">
+                ไปยังการแข่งขันที่คุณเข้าร่วมไว้
+              </router-link>
+
+            <router-link tag="button" :to="{name: 'MatchCreate'}" class="success-button">
+                ไปยังการแข่งขันที่คุณสร้างไว้
+              </router-link>
+
+
               <router-link tag="button" :to="{name: 'CreateMatch'}" class="success-button">
                 สร้างการแข่งขัน
               </router-link>

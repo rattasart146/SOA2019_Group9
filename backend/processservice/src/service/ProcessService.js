@@ -171,8 +171,13 @@ exports.postNewSchedule = (req, res) => {
     let team_1_name = req.body.team_1_name;
     let team_2_name = req.body.team_2_name;
     let date = req.body.date;
+    let month = req.body.month;
+    let year = req.body.year;
     let hr = req.body.hr;
     let min = req.body.min;
+
+
+
     if (!matchid) {
         return res.status(400).send({
             error: true,
@@ -197,6 +202,18 @@ exports.postNewSchedule = (req, res) => {
             message: 'Please provide date'
         });
     }
+    if (!month) {
+        return res.status(400).send({
+            error: true,
+            message: 'Please provide month'
+        });
+    }
+    if (!year) {
+        return res.status(400).send({
+            error: true,
+            message: 'Please provide year'
+        });
+    }
     if (!hr) {
         return res.status(400).send({
             error: true,
@@ -214,6 +231,8 @@ exports.postNewSchedule = (req, res) => {
         team_1_name: team_1_name,
         team_2_name: team_2_name,
         date: date,
+        month: month,
+        year: year,
         hr: hr,
         min: min
     }, function(error, results, fields) {
