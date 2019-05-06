@@ -11,7 +11,8 @@ export default {
 </script>
 
 <style>
-
+@import 'variables.scss';
+@import 'main.scss';
 #app {
   margin-top: 80px;
   font-family: Anakotmai;

@@ -250,8 +250,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.nav-margin{
+  height: 300px;
+}
 .sub-head{
-    padding: 3rem;
+    padding-top: 100px;
     background-image: url(/static/img/sub-head-bg.28cb331.png);
     background-attachment: fixed;
     background-size: cover;

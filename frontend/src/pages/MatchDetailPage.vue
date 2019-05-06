@@ -36,14 +36,17 @@
               <h3><span>จัดโดย</span> <strong>{{value.matchowner}}</strong></h3>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-            <div class="row" v-for="(value,name) in match_detail"> 
+
+          <div class="row" v-for="(value,name) in match_detail"> 
              <router-link  tag="button" :to="{name: 'MatchRegister',query: { match_id: value.match_id}  }" class="success-button">
                 เข้าร่วมการแข่งขันนี้
               </router-link>
             </div>
+
+        </div>
+      </div>
+    </div>
+            
 
     <div class="container">
       <div class="row mt-5">
@@ -272,5 +275,14 @@ table{
   font-size: 5rem;
   line-height: 5rem;
   margin-bottom: 2rem;
+}
+button{
+  padding: 10px 30px;
+  cursor: pointer;
+  background: #DC2121;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
 }
 </style>
