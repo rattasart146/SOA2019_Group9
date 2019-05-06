@@ -11,6 +11,7 @@ import CreateMatch from '@/pages/CreateMatch'
 import MatchRegister from '@/pages/MatchRegister'
 import MatchJoin from '@/pages/MatchJoined'
 import MatchCreate from '@/pages/MatchCreated'
+import MatchManagement from '@/pages/MatchManagement'
 
 
 Vue.use(Router)
@@ -76,6 +77,11 @@ export default new Router({
       path: '/MatchCreate',
       name: 'MatchCreate',
       component: MatchCreate
+    },
+    {
+      path: '/match-management',
+      name: 'MatchManagement',
+      component: MatchManagement
     }
   ]
 })

@@ -1,3 +1,7 @@
+
+
+
+
 <template>
   <div>
     <navbar></navbar>
@@ -12,13 +16,6 @@
           <div class="col-12">
             <div class="match-date align-left">
               <h3 class="text-normal">รายละเอียดการแข่งขัน</h3><h5>{{value.match_desc}}</h5>
-              <br>
-              <span v-for="(value,name) in match_detail"> 
-                <router-link  tag="button" :to="{name: 'MatchRegister',query: { match_id: value.match_id}  }" class="success-button match-register-bt">
-                    เข้าร่วมการแข่งขันนี้
-                </router-link>
-              </span>
-              <br>
               <br>
             </div>
           </div>
@@ -79,7 +76,41 @@
           <h1>ตารางการแข่งขัน</h1>
         </div>
         <div class="col-12">
-          <h4>รอบ 8 ทีม</h4>
+          <!--add fixure -->
+          <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Home</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                      <option selected>Choose...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                    <br>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Away</label>
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                      <option selected>Choose...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                    <br>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                        <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                  </div>
+                </div>
+                <button class="btn btn-primary">Submit</button>
+          </div>
+          <!-- end -->
+          <br>
         </div>
         <div class="col-12">
           <table class="table table-dark">
@@ -92,6 +123,7 @@
                 <th scope="col"></th>
                 <th scope="col">Away</th>
                 <th scope="col">Time</th>
+                <th scope="col">setting</th>
               </tr>
             </thead>
             
@@ -104,11 +136,79 @@
                 <td>{{value.team_2_score}}</td>
                 <td>{{value.team_2_name}}</td>
                 <td>{{value.hr}}:{{value.min}}</td>
+                <td>
+                  <div v-if="showModal">
+                  <transition name="modal">
+                    <div class="modal-mask">
+                      <div class="modal-wrapper">
+
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title">Modal title</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true" @click="showModal = false">&times;</span>
+                                  </button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="form-row">
+                                  <div class="form-group col-4">
+                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Home</label>
+                                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                      <option selected>Choose...</option>
+                                      <option value="1">One</option>
+                                      <option value="2">Two</option>
+                                      <option value="3">Three</option>
+                                    </select>
+                                    <br>
+                                  </div>
+                                  <div class="form-group col-4">
+                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Score</label>
+                                      <div class="form-row">
+                                        <div class="form-group col-6">
+                                          <input class="form-control" type="number" value="0" id="example-number-input">
+                                        </div>
+                                        <div class="form-group col-6">
+                                          <input class="form-control" type="number" value="0" id="example-number-input">
+                                        </div>
+                                      </div>
+                                    <br>
+                                  </div>
+                                  <div class="form-group col-4">
+                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Away</label>
+                                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                      <option selected>Choose...</option>
+                                      <option value="1">One</option>
+                                      <option value="2">Two</option>
+                                      <option value="3">Three</option>
+                                    </select>
+                                    <br>
+                                  </div>
+                                  <div class="form-group col-12">
+                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Date and time</label>
+                                    <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
+                                  </div>
+                                </div>        
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" @click="showModal = false">Close</button>
+                                  <button type="button" class="btn btn-primary" @click="showModal = false">Save changes</button>
+                              </div>
+                          </div>
+                      </div>
+
+                      </div>
+                    </div>
+                  </transition>
+                  </div>
+
+                  <button @click="showModal = true">Click</button>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
-
+      <!-- Backup  
         <div class="col-12">
           <h4>รอบรองชนะเลิศ</h4>
         </div>
@@ -122,10 +222,10 @@
                 <th scope="col">vs</th>
                 <th scope="col"></th>
                 <th scope="col">Away</th>
+                <th scope="col">setting</th>
               </tr>
             </thead>
 
-            <!-- <tbody v-for="value in match_team">  -->
               <tr>
                 <td>09.00</td>
                 <td>Engineer</td>
@@ -134,7 +234,6 @@
                 <td>2</td>
                 <td>Info Tech</td>
               </tr>
-            <!-- </tbody> -->
           </table>
         </div>
 
@@ -154,7 +253,6 @@
               </tr>
             </thead>
 
-            <!-- <tbody v-for="value in match_team">  -->
               <tr>
                 <td>09.00</td>
                 <td>Engineer</td>
@@ -163,13 +261,11 @@
                 <td>2</td>
                 <td>Info Tech</td>
               </tr>
-            <!-- </tbody> -->
           </table>
         </div>
-
+      -->
       </div>
     </div>
-
   </div>
 
 
@@ -185,9 +281,8 @@ import axios from "axios";
 
 var accountObj;
 
-
 export default {
-  name: "MatchDetailPage",
+  name: "MatchManagement",
   components: {
     Navbar: Navbar
   },
@@ -211,7 +306,8 @@ export default {
       match_detail : [],
       match_id: null,
       match_team : [],
-      match_schedule : []
+      match_schedule : [],
+      showModal: false
     };
   },
   methods: {
@@ -280,5 +376,22 @@ table{
   &#regis-link {
     width: 100%;
   }
+}
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #C90B0B;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
 }
 </style>
