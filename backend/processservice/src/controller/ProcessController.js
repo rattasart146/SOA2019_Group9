@@ -21,10 +21,13 @@ router.get("/:matchid/allteam", processService.getTeamList);
 router.post("/:matchid/teamjoin", processService.postNewTeamJoin);
 // get all schedule list
 router.get("/:matchid/allschedule", processService.getAllSchedule);
-// posrtnew schedule
+// post new schedule
 router.post("/:matchid/newschedule", processService.postNewSchedule);
 //get all team owner
 router.get("/getallteamowner", processService.getAllTeamOwner);
 //get getMatchIdFromTeamOwner
 router.get("/getmatchidfromteamowner/:username", processService.getMatchIdFromTeamOwner);
+
+// post update score
+router.post("/:matchid/updatescore", processService.postUpdateScore);
 module.exports = router;

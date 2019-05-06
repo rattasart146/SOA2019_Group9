@@ -257,3 +257,57 @@ exports.getMatchIdFromTeamOwner = (req, res) => {
         return res.send(results);
     });
 }
+
+exports.postUpdateScore = (req, res) => {
+    /*
+    var docs = req.body
+         if (teamcount < 8) {
+            mockTeam.push(docs)
+            teamcount+=1
+            return res.status(201).send({isNewTeamJoin:true})
+        } else{
+            return res.status(201).send({isNewTeamJoin:false})
+        }
+    var docs = ""
+    */
+    let matchid = req.params.matchid;
+    let schedule_id = req.body.schedule_id;
+    let team_1_score = req.body.team_1_score;
+    let team_2_score = req.body.team_2_score;
+
+    if (!matchid) {
+        return res.status(400).send({
+            error: true,
+            message: 'Please provide matchid'
+        });
+    }
+
+    if (!schedule_id) {
+        return res.status(400).send({
+            error: true,
+            message: 'Please provide schedule_id'
+        });
+    }
+    if (!team_1_score) {
+        return res.status(400).send({
+            error: true,
+            message: 'Please provide team_1_score'
+        });
+    }
+    if (!team_2_score) {
+        return res.status(400).send({
+            error: true,
+            message: 'Please provide team_2_score'
+        });
+    }
+    con.query("UPDATE match_schedule SET team_1_score = ?, team_2_score = ? WHERE schedule_id = ? ", [
+         team_1_score , team_2_score, schedule_id ]
+    , function(error, results, fields) {
+        if (error) throw error;
+        return res.send({
+            error: false,
+            data: results,
+            message: 'UPDATE schedule has been successfully.'
+        });
+    });
+}

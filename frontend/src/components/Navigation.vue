@@ -16,7 +16,7 @@
               <router-link tag="button" :to="{name: 'CreateMatch'}" class="success-button">
                 สร้างการแข่งขัน
               </router-link>
-              <router-link tag="logout-button" :to="'#'" v-on:click.native="Logout" class="success-button">ออกจากระบบ</router-link>
+              <router-link tag="logoutbutton" :to="'#'" v-on:click.native="Logout" class="success-button">ออกจากระบบ</router-link>
             
 
 
@@ -27,7 +27,7 @@
 <script>
 
 import router from "../router";
-var accountObj = JSON.parse(localStorage.getItem('account'));
+var accountObj;
 export default {
     name: 'Navigation',
   data() {
@@ -54,12 +54,17 @@ export default {
       }
     },
     Logout() {
+      localStorage.removeItem("account");
+      localStorage.removeItem("profile");
+      localStorage.removeItem("messageAlert");
+      localStorage.removeItem("unAuth");
       localStorage.clear();
       router.push({ name: "Login" });
     }
   },
   created() {
     this.isAuth();
+    accountObj = JSON.parse(localStorage.getItem('account'));
   }
 }
 </script>
@@ -106,7 +111,7 @@ button{
   border-radius: 50px;
   font-size: 16px;
 }
-logout-button{
+logoutbutton{
   padding: 10px 30px;
   cursor: pointer;
   background: #DC2121;

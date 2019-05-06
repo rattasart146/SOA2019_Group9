@@ -11,7 +11,7 @@
           </div>
           <div class="col-3 align-right">
               <span v-for="(value,name) in match_detail">  
-                <router-link  tag="button" :to="{name: 'MatchRegister',query: { match_id: value.match_id}  }" class="success-button match-bt">
+                <router-link  tag="button" :to="{name: 'MatchManagement',query: { match_id: value.match_id}  }" class="success-button match-bt">
                   จัดการการแข่ง
                 </router-link>
               </span>
@@ -79,9 +79,6 @@
           <h1>ตารางการแข่งขัน</h1>
         </div>
         <div class="col-12">
-          <h4>รอบ 8 ทีม</h4>
-        </div>
-        <div class="col-12">
           <table class="table table-dark">
             <thead>
               <tr>
@@ -97,7 +94,7 @@
             
             <tbody>
               <tr v-for="value in match_schedule">
-                <td>{{value.date}}:{{value.month}}:{{value.year}}</td>
+                <td>{{value.date}}/{{value.month}}/{{value.year}}</td>
                 <td>{{value.team_1_name}}</td>
                 <td>{{value.team_1_score}}</td>
                 <td>-</td>
@@ -109,63 +106,9 @@
           </table>
         </div>
 
-        <div class="col-12">
-          <h4>รอบรองชนะเลิศ</h4>
-        </div>
-        <div class="col-12">
-          <table class="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">เวลา</th>
-                <th scope="col">Home</th>
-                <th scope="col"></th>
-                <th scope="col">vs</th>
-                <th scope="col"></th>
-                <th scope="col">Away</th>
-              </tr>
-            </thead>
 
-            <!-- <tbody v-for="value in match_team">  -->
-              <tr>
-                <td>09.00</td>
-                <td>Engineer</td>
-                <td>0</td>
-                <td>-</td>
-                <td>2</td>
-                <td>Info Tech</td>
-              </tr>
-            <!-- </tbody> -->
-          </table>
-        </div>
 
-        <div class="col-12">
-          <h4>รอบชิงชนะเลิศ</h4>
-        </div>
-        <div class="col-12">
-          <table class="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">เวลา</th>
-                <th scope="col">Home</th>
-                <th scope="col"></th>
-                <th scope="col">vs</th>
-                <th scope="col"></th>
-                <th scope="col">Away</th>
-              </tr>
-            </thead>
 
-            <!-- <tbody v-for="value in match_team">  -->
-              <tr>
-                <td>09.00</td>
-                <td>Engineer</td>
-                <td>0</td>
-                <td>-</td>
-                <td>2</td>
-                <td>Info Tech</td>
-              </tr>
-            <!-- </tbody> -->
-          </table>
-        </div>
 
       </div>
     </div>
