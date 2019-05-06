@@ -41,8 +41,8 @@
               </div>
               <div class="box-detail-bt">
 
-                <router-link :to="{ name: 'MatchDetailPage',
-                  query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
+                <router-link :to="{ name: 'MatchDetailOwnPage',
+                  query: { match_id: value.match_id , status : 'owner'}  }">ดูรายละเอียด</router-link>
               </div>
             </div>
           </div>

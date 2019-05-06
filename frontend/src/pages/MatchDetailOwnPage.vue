@@ -39,9 +39,10 @@
         </div>
       </div>
     </div>
+    /เช็คเฉยๆ/
             <div class="row" v-for="(value,name) in match_detail"> 
              <router-link  tag="button" :to="{name: 'MatchRegister',query: { match_id: value.match_id}  }" class="success-button">
-                เข้าร่วมการแข่งขันนี้
+                จัดการการแข่ง
               </router-link>
             </div>
 
