@@ -78,8 +78,9 @@
         <div class="col-12">
           <!--add fixure -->
           <div class="row">
-            <form @submit="doNewSchedule">
-                <div class="col-6">
+            <form @submit="doNewSchedule" class="col-12">
+              <div class="row">
+                <div class="col-5 align-center">
                   <div class="form-group">
                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Home</label>
                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputTeam1"   >
@@ -87,10 +88,10 @@
                               {{ value.team_name }}
                             </option>
                           </select>
-                    <br>
                   </div>
                 </div>
-                <div class="col-6">
+              <div class="col-2 align-center"> VS </div>
+              <div class="col-5  align-center">
                   <div class="form-group">
                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Away</label>
                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputTeam2">
@@ -98,23 +99,27 @@
                               {{ value.team_name }}
                             </option>
                           </select>
-                    <br>
+                  </div>
                   </div>
                 </div>
-                วันที่
-                <div class="col-7">
+                
+                <div class="row">
+                  <div class="col-12">
+                  วันที่ (วัน/เดือน/ปี)
+                   </div>
+                  <div class="col-12">
                     <div class="form-group">
-                       <select class="custom-select my-10 mr-sm-2"  id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputDate" >
+                       <select class="custom-select my-10 mr-sm-2 col-1"  id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputDate" >
                           <option selected>Choose...</option>
                           <option v-for="(value, index) in 31" :key="index" :value="value">{{ value }}</option>
                     </select>
                     /
-                    <select class="custom-select my-1 mr-sm-2"  id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputMonth" >
+                    <select class="custom-select my-1 mr-sm-2 col-1"  id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputMonth" >
                       <option selected> เลือกเดือน </option>
                           <option v-for="(value, index) in 12" :key="index" :value="value">{{ value }}</option>
                     </select>
                     /
-                    <select class="custom-select my-1 mr-sm-2"  id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputYear" >
+                    <select class="custom-select my-1 mr-sm-2 col-1"  id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputYear" >
                       <option selected> เลือกปี </option>
                           <option value="2018">2018</option>
                           <option value="2019">2019</option>
@@ -125,9 +130,17 @@
                           <option value="2024">2024</option>
                           <option value="2025">2025</option>
                     </select>
-
-                    เวลา
-                    <select class="custom-select my-1 mr-sm-2"  id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputHr" >
+                  </div>
+                </div>
+                </div>
+                
+                  <div class="row">
+                    <div class="col-12">
+                      เวลา (ชั่วโมง:นาที)
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <select class="custom-select my-1 mr-sm-2 stylr col-1"  id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputHr" >
                       <option selected> ชั่วโมง </option>
                           <option value="01">01</option>
                           <option value="02">02</option>
@@ -154,7 +167,7 @@
                           <option value="23">23</option>
                     </select>
                     :
-                    <select class="custom-select my-1 mr-sm-2"  id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputMin" >
+                      <select class="custom-select my-1 mr-sm-2 col-1"  id="inlineFormCustomSelectPref" v-model="matchmatnagement.inputMin" >
                       <option selected> นาที </option>
                       <option value="2025">00</option>
                           <option value="05">05</option>
@@ -168,13 +181,13 @@
                           <option value="45">45</option>
                           <option value="50">50</option>
                           <option value="55">55</option>
-
-                    </select>
-
-
+                        </select>
+                    
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <button class="btn btn-primary" type="submit" >Submit</button>
+                <br>
+                   <button class="btn btn-primary" type="submit" >Submit</button>
               </form>
           </div>
           <!-- end -->
@@ -215,7 +228,7 @@
           </table>
           <h5>อัพเดตคะแนน</h5>
                             <form @submit="doUpdateScore">
-                  <div class="form-row">
+                  <div class="form-row" >
 
                                         <div class="form-group col-6">
                                           <input class="form-control" v-model.number ="updatescore.inputTeam_1_score"  type="number" value="0" id="example-number-input">
@@ -457,7 +470,14 @@ table{
     background-attachment: fixed;
     background-size: cover;
     color: #fff;
+    height: 300px;
 }
+.form-group{
+  display: inline;
+  width: 100%;
+  margin: 0px;
+}
+
 .match-title{
   font-size: 5rem;
   line-height: 5rem;
