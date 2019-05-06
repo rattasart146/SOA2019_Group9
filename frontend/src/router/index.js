@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation'
 import LoginPage from '@/pages/Login'
 import ShowtimePage from '@/pages/ShowtimePage'
 import MatchDetailPage from '@/pages/MatchDetailPage'
+import MatchDetailOwnPage from '@/pages/MatchDetailOwnPage'
 import RegisterPage from '@/pages/Register'
 import RegisterSuccessPage from '@/pages/RegisterSuccess'
 import CreateMatch from '@/pages/CreateMatch'
@@ -82,6 +83,11 @@ export default new Router({
       path: '/match-management',
       name: 'MatchManagement',
       component: MatchManagement
+    },
+    {
+      path: '/match-detail-own',
+      name: 'MatchDetailOwnPage',
+      component: MatchDetailOwnPage
     }
   ]
 })

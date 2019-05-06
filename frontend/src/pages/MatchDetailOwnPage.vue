@@ -6,19 +6,19 @@
     <div class="row sub-head">
       <div class="container">
         <div class="row" v-for="(value, name) in match_detail">
-          <div class="col-12 ">
+          <div class="col-9 ">
             <div class="match-title text-bold">{{value.matchname}}</div>
+          </div>
+          <div class="col-3 align-right">
+              <span v-for="(value,name) in match_detail">  
+                <router-link  tag="button" :to="{name: 'MatchRegister',query: { match_id: value.match_id}  }" class="success-button match-bt">
+                  จัดการการแข่ง
+                </router-link>
+              </span>
           </div>
           <div class="col-12">
             <div class="match-date align-left">
               <h3 class="text-normal">รายละเอียดการแข่งขัน</h3><h5>{{value.match_desc}}</h5>
-              <br>
-              <span v-for="(value,name) in match_detail"> 
-                <router-link  tag="button" :to="{name: 'MatchRegister',query: { match_id: value.match_id}  }" class="success-button match-bt">
-                    เข้าร่วมการแข่งขันนี้
-                </router-link>
-              </span>
-              <br>
               <br>
             </div>
           </div>

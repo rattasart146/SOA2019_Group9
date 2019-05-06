@@ -2,7 +2,7 @@
   <nav>
             <router-link  :to="{name: 'ShowtimePage'}" class="logo">MATCHING!<span>!</span></router-link>
 
-            <h3> สวัสดีคุณ </h3><h2>  {{this.navbar.username}} </h2>
+            <h2> สวัสดีคุณ {{this.navbar.username}} </h2>
 
              <router-link tag="button" :to="{name: 'MatchJoin'}" class="success-button">
                 ไปยังการแข่งขันที่คุณเข้าร่วมไว้
@@ -16,7 +16,7 @@
               <router-link tag="button" :to="{name: 'CreateMatch'}" class="success-button">
                 สร้างการแข่งขัน
               </router-link>
-              <router-link tag="button" :to="'#'" v-on:click.native="Logout" class="success-button">ออกจากระบบ</router-link>
+              <router-link tag="logout-button" :to="'#'" v-on:click.native="Logout" class="success-button">ออกจากระบบ</router-link>
             
 
 
@@ -95,5 +95,24 @@ span{
 .sign-up-btn{
   color: white;
   background-color: #DC2121;
+}
+
+button{
+  padding: 10px 30px;
+  cursor: pointer;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+}
+logout-button{
+  padding: 10px 30px;
+  cursor: pointer;
+  background: #DC2121;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
 }
 </style>

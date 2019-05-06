@@ -22,14 +22,6 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <div class="alert alert-danger" v-if="login.messageAlert">
-                            <strong>ผิดพลาด!</strong>
-                            {{ login.messageAlert }}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
                           <form @submit="onLogin">
                             <div class="form-group">
                               <input
@@ -49,10 +41,18 @@
                             </div>
                             <button
                               type="submit"
-                              class="btn btn-success anakotmai-medium-text"
+                              class="btn btn-danger anakotmai-medium-text"
                             >เข้าสู่ระบบ</button>
                             
                           </form>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-11">
+                          <div class="alert alert-warning" v-if="login.messageAlert">
+                            <strong>WRONG!! </strong>
+                            {{ login.messageAlert }}
+                          </div>
                         </div>
                       </div>
                     </div>

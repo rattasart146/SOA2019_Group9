@@ -41,8 +41,8 @@
               </div>
               <div class="box-detail-bt">
 
-                <router-link :to="{ name: 'MatchDetailPage',
-                  query: { match_id: value.match_id} }">ดูรายละเอียด</router-link>
+                <router-link :to="{ name: 'MatchDetailOwnPage',
+                  query: { match_id: value.match_id , status : 'owner'}  }">ดูรายละเอียด</router-link>
               </div>
             </div>
           </div>
@@ -134,8 +134,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.nav-margin{
+  height: 300px;
+}
 .sub-head{
-    padding: 3rem;
+    padding-top: 100px;
     background-image: url(/static/img/sub-head-bg.28cb331.png);
     background-attachment: fixed;
     background-size: cover;
