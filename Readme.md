@@ -64,7 +64,12 @@ node app.js
 
  ### API Endpoint_**
 
+
+
+
 APIGATEWAY  localhost:3001/api/
+ขึ้น cloud http://35.240.225.238:3301/api
+eureka http://35.240.225.238:8761
 
 **_Match Service : Service ที่ใช้ค้นหา match ที่จัดขึ้นอยู่ในระบบและแสดงข้อมูลจำเพาะ_**
 ```
