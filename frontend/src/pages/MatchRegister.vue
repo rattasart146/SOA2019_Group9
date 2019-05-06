@@ -88,7 +88,7 @@ export default {
         .then(res => {
           if(res.data != "deplicate teamname") {
             console.log(res)
-            alert("เข้าร่วมการแข่งสำเร็จ!");
+            alert("กลับไปหน้าการแข่ง!");
             router.push({ name: 'MatchDetailPage', query: { match_id: this.match_id }})
           } else {
             alert("ชื่อทีมของคุณซ้ำกับทีมอื่นในการแข่งขันนี้!");
