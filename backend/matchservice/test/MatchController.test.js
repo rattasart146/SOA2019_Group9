@@ -1,12 +1,11 @@
-const server = require('../server');
-const request = require('supertest');
+const server = require('../src/controller/MatchController');
 
 // คืออะไร?
-var chai = require("chai");
-const should = chai.should();
-const chaiHttp = require("chai-http");
+// var chai = require("chai");
+// const should = chai.should();
+// const chaiHttp = require("chai-http");
 
-chai.use(chaiHttp);
+// chai.use(chaiHttp);
 
 describe('/', () => {
     beforeAll(async () => {
@@ -265,67 +264,67 @@ describe('/', () => {
             expect(res.body).toEqual(404)
         })
     })
-})
+});
 
 // /newmatch
-describe("POST NEWMATCH", () => {
-    it("should postNewMatch success", function (done) {
-        this.timeout(10000);
-        chai
-            .request(server)
-            .post("/newmatch")
-            .send({
-                match_id:5,
-                matchname:"testendmatchzz",
-                matchowner:"naruto",
-                match_desc:"bla bla bla blaaaaaa",
-                match_location:"bangkok",
-                match_status:"end",
-                match_size:4
-            })
-            .end((err, res) => {
-                res.should.have.status(200);
-                done();
-            });
-    });
+// describe("POST NEWMATCH", () => {
+//     it("should postNewMatch success", function (done) {
+//         this.timeout(10000);
+//         chai
+//             .request(server)
+//             .post("/newmatch")
+//             .send({
+//                 match_id:5,
+//                 matchname:"testendmatchzz",
+//                 matchowner:"naruto",
+//                 match_desc:"bla bla bla blaaaaaa",
+//                 match_location:"bangkok",
+//                 match_status:"end",
+//                 match_size:4
+//             })
+//             .end((err, res) => {
+//                 res.should.have.status(200);
+//                 done();
+//             });
+//     });
 
-    it("shouldn't postNewMatch success", done => {
-        chai
-            .request(server)
-            .post("/newuser")
-            .send({
-                match_id:7,
-                matchname:"testendmatchzz",
-                matchowner:"naruto",
-                match_desc:"bla bla bla blaaaaaa",
-                match_location:"bangkok",
-                match_status:"end",
-                match_size:4
-            })
-            .end((err, res) => {
-                res.should.have.status(400);
-                done();
-            });
-    });
+//     it("shouldn't postNewMatch success", done => {
+//         chai
+//             .request(server)
+//             .post("/newuser")
+//             .send({
+//                 match_id:7,
+//                 matchname:"testendmatchzz",
+//                 matchowner:"naruto",
+//                 match_desc:"bla bla bla blaaaaaa",
+//                 match_location:"bangkok",
+//                 match_status:"end",
+//                 match_size:4
+//             })
+//             .end((err, res) => {
+//                 res.should.have.status(400);
+//                 done();
+//             });
+//     });
 
-    it("shouldn't postNewMatch success because information is null", done => {
-        chai
-            .request(server)
-            .post("/newuser")
-            .send({
-                match_id:null,
-                matchname:null,
-                matchowner:null,
-                match_desc:null,
-                match_location:null,
-                match_status:null,
-                match_size:null
-            })
-            .end((err, res) => {
-                res.should.have.status(400);
-                done();
-            });
-    });
+//     it("shouldn't postNewMatch success because information is null", done => {
+//         chai
+//             .request(server)
+//             .post("/newuser")
+//             .send({
+//                 match_id:null,
+//                 matchname:null,
+//                 matchowner:null,
+//                 match_desc:null,
+//                 match_location:null,
+//                 match_status:null,
+//                 match_size:null
+//             })
+//             .end((err, res) => {
+//                 res.should.have.status(400);
+//                 done();
+//             });
+//     });
 
     // postUpdateStatus ทำไม่เป็น
 

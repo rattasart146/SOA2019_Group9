@@ -1,12 +1,5 @@
-const server = require('../server');
-const request = require('supertest');
 
-// คืออะไร?
-var chai = require("chai");
-const should = chai.should();
-const chaiHttp = require("chai-http");
-
-chai.use(chaiHttp);
+const request = require('../src/controller/UserController');
 
 describe('/', () => {
     beforeAll(async () => {
@@ -60,99 +53,99 @@ describe('/', () => {
 })
 
 // /newuser
-describe("POST NEWUSER", () => {
-    it("should postNewuser success", function (done) {
-        this.timeout(10000);
-        chai
-            .request(server)
-            .post("/newuser")
-            .send({
-                username: "PrayuthFC",
-                password: "12345678",
-                firstname: "Prayuth",
-                lastname: "Chan-O-Cha"
-            })
-            .end((err, res) => {
-                res.should.have.status(200);
-                done();
-            });
-    });
+// describe("POST NEWUSER", () => {
+//     it("should postNewuser success", function (done) {
+//         this.timeout(10000);
+//         chai
+//             .request(server)
+//             .post("/newuser")
+//             .send({
+//                 username: "PrayuthFC",
+//                 password: "12345678",
+//                 firstname: "Prayuth",
+//                 lastname: "Chan-O-Cha"
+//             })
+//             .end((err, res) => {
+//                 res.should.have.status(200);
+//                 done();
+//             });
+//     });
 
-    it("shouldn't postNewuser success", done => {
-        chai
-            .request(server)
-            .post("/newuser")
-            .send({
-                username: "PrayuthFC",
-                password: "11111111",
-                firstname: "Prayuth",
-                lastname: "Chan-O-Cha"
-            })
-            .end((err, res) => {
-                res.should.have.status(400);
-                done();
-            });
-    });
+//     it("shouldn't postNewuser success", done => {
+//         chai
+//             .request(server)
+//             .post("/newuser")
+//             .send({
+//                 username: "PrayuthFC",
+//                 password: "11111111",
+//                 firstname: "Prayuth",
+//                 lastname: "Chan-O-Cha"
+//             })
+//             .end((err, res) => {
+//                 res.should.have.status(400);
+//                 done();
+//             });
+//     });
 
-    it("shouldn't login success because username & password null", done => {
-        chai
-            .request(server)
-            .post("/newuser")
-            .send({
-                username: null,
-                password: null,
-                firstname: null,
-                lastname: null
-            })
-            .end((err, res) => {
-                res.should.have.status(400);
-                done();
-            });
-    });
-});
+//     it("shouldn't login success because username & password null", done => {
+//         chai
+//             .request(server)
+//             .post("/newuser")
+//             .send({
+//                 username: null,
+//                 password: null,
+//                 firstname: null,
+//                 lastname: null
+//             })
+//             .end((err, res) => {
+//                 res.should.have.status(400);
+//                 done();
+//             });
+//     });
+// });
 
-// /login
-describe("POST LOGIN", () => {
-    it("should login success", function (done) {
-        this.timeout(10000);
-        chai
-            .request(server)
-            .post("/login")
-            .send({
-                username: "test1",
-                password: "1234"
-            })
-            .end((err, res) => {
-                res.should.have.status(200);
-                done();
-            });
-    });
+// // /login
+// describe("POST LOGIN", () => {
+//     it("should login success", function (done) {
+//         this.timeout(10000);
+//         chai
+//             .request(server)
+//             .post("/login")
+//             .send({
+//                 username: "test1",
+//                 password: "1234"
+//             })
+//             .end((err, res) => {
+//                 res.should.have.status(200);
+//                 done();
+//             });
+//     });
 
-    it("shouldn't login success", done => {
-        chai
-            .request(server)
-            .post("/login")
-            .send({
-                username: "test",
-                password: "test"
-            })
-            .end((err, res) => {
-                res.should.have.status(400);
-                done();
-            });
-    });
+//     it("shouldn't login success", done => {
+//         chai
+//             .request(server)
+//             .post("/login")
+//             .send({
+//                 username: "test",
+//                 password: "test"
+//             })
+//             .end((err, res) => {
+//                 res.should.have.status(400);
+//                 done();
+//             });
+//     });
 
-    it("shouldn't login success because username & password null", done => {
-        chai
-            .request(server)
-            .post("/login")
-            .send({
-                username: null,
-                password: null
-            })
-            .end((err, res) => {
-                res.should.have.status(400);
-                done();
-            });
-    });
-});
+//     it("shouldn't login success because username & password null", done => {
+//         chai
+//             .request(server)
+//             .post("/login")
+//             .send({
+//                 username: null,
+//                 password: null
+//             })
+//             .end((err, res) => {
+//                 res.should.have.status(400);
+//                 done();
+//             });
+//     });
+// });
