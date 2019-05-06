@@ -302,6 +302,26 @@
           </table>
         </div>
       -->
+        <div>
+          <h5>เปลี่ยนสถานะการแข่งขัน</h5>
+           <form @submit="doChangeStatus" class="col-12">
+          <select class="custom-select my-1 mr-sm-2 col-5"  id="inlineFormCustomSelectPref" v-model="changestatus.inputStatus" >
+                      <option selected> เลือกสถานะ </option>
+                          <option value="registering">Registering</option>
+                          <option value="matching">Matching</option>
+                          <option value="end">End</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary" >เปลี่ยนสถานะ</button>
+                  </form>
+
+        </div>
+
+
+
+
+
+
+
       </div>
     </div>
   </div>
@@ -361,6 +381,9 @@ export default {
         inputScheduleID : "",
         inputTeam_1_score : "",
         inputTeam_2_score : ""
+      },
+      changestatus :{
+        inputStatus : ""
       }
     };
   },
@@ -455,6 +478,20 @@ export default {
         });
 
 
+    },
+    doChangeStatus(evt){
+        evt.preventDefault();
+        const path = "http://localhost:3001/api/matchgateway/match/matchid/"+this.match_id+"/setstatus/"+this.changestatus.inputStatus;
+        axios
+        .post(path)
+        .then(res => {
+            alert("เปลี่ยนแปลงสถานะการแข่งสำเร็จ!");
+            router.push({ name: 'MatchDetailOwnPage', query: { match_id: this.match_id }})
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      
     }
 }
 };
