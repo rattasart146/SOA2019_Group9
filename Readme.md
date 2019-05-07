@@ -95,7 +95,8 @@ node app.js
 ***
 **APIGATEWAY**  
 *localhost:3001/api/
-,  ขึ้น cloud =>  http://35.240.225.238:3001/api
+,  ขึ้น cloud =>  http://35.240.225.238:3001/api 
+แล้วตามด้วย endpoint
 ***
 ***
 **eureka**
@@ -120,16 +121,17 @@ POST /matchgateway/match/newmatch สร้างการแข่งขัน�
 
 **_Process Service : Service ที่ใช้จัดการเกี่ยวกับ Process ต่างๆระหว่างการแข่งขัน_**
 ```
-GET /processgateway/proess/:matchid/allteam แสดงรายชื่อทีมที่เข้าร่วมการแข่งขันนั้น
-POST /processgateway/proess/:matchid/teamjoin เพิ่มทีมเข้าไปในการแข่ง ต้องใส่ team_name, team_contact, team_owner
+GET processgateway/process/:matchid/allteam แสดงรายชื่อทีมที่เข้าร่วมการแข่งขันนั้น
+POST processgateway/process/:matchid/teamjoin เพิ่มทีมเข้าไปในการแข่ง ต้องใส่ team_name, team_contact, team_owner
 
-GET /processgateway/proess/:matchid/allschedule เช็คตารางแข่ง
-POST /processgateway/proess/:matchid/newschedule สร้างนัดหมายการแข่ง ต้องใส่ team_1_name, team_2_name, date, hr, min
+GET processgateway/process/proess/:matchid/allschedule เช็คตารางแข่ง
+POST processgateway/process/proess/:matchid/newschedule สร้างนัดหมายการแข่ง ต้องใส่ team_1_name, team_2_name, date, hr, min
 ```
 
 **_User Service : Service ที่ใช้ค้นหา เพิ่ม และแสดงข้อมูลผู้ใช้_**
 ```
-GET /user แสดงข้อมูลผู้ใช้ทั้งหมด
-GET /user/id/:userid: แสดงข้อมูลผู้ใช้ตาม userid
-POST /user/newuser เพิ่ม user ใหม่ ต้องใส่ username, password, firstname, lastname
+GET processgateway/user แสดงข้อมูลผู้ใช้ทั้งหมด
+GET processgateway/user/id/:userid: แสดงข้อมูลผู้ใช้ตาม userid
+POST processgateway/user/newuser เพิ่ม user ใหม่ ต้องใส่ username, password, firstname, lastname
+POST usergateway/user/login ใส่ username password
 ```
