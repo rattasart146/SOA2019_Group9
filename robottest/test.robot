@@ -16,6 +16,18 @@ ${BROWSER}  gc
 Accept Dialog
   Handle Alert  accept
 
+สมัครสมาชิก
+  Click Element  //*[@id="regis-link"]/p/a/span
+  Location Should Be  http://35.240.225.238:8080/#/register
+  Input Text  //*[@id="Username"]  SteveSliped
+  Input Text  //*[@id="password"]	123456
+  Input Text  //*[@id="wrap-register"]/div/div/div[1]/form/div[3]/input  Steven
+  Input Text  //*[@id="wrap-register"]/div/div/div[1]/form/div[4]/input  Gerrard
+  Click Button  //*[@id="regis-link"]
+  wait until page contains element  //*[@id="detail-form"]/div[2]/button
+  Click Button  //*[@id="detail-form"]/div[2]/button
+  Location Should Be  http://35.240.225.238:8080/#/
+
 Login
   Input Text  //*[@id="wrap-login"]/div[2]/div[2]/div/div/div[2]/div/form/div[1]/input  test1
   Input Text  //*[@id="wrap-login"]/div[2]/div[2]/div/div/div[2]/div/form/div[2]/input  1234
@@ -43,6 +55,9 @@ Login
   Click Button  //*[@id="app"]/div/nav/button[2]
 
 *** Test Cases ***
+ทดสอบ สมัครสมาชิก
+  สมัครสมาชิก
+  
 ทดสอบ Login
   Login
 
