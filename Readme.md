@@ -1,4 +1,4 @@
-***http://35.240.225.238:8080/#/ ดีพลอย
+***http://35.240.225.238:8080/#/ ดีพลอย(Deploy)
 
 # **ชื่อโครงการ** : Matching! ระบบจัดการการแข่งขันกีฬาฟุตบอล
 ***
@@ -30,7 +30,7 @@
 do first
 ```
 git clone https://github.com/rattasart146/SOA2019_Group9.git
-cd project folder
+cd SOA2019_Group9
 ```
 and then
 
