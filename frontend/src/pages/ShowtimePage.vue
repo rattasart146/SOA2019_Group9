@@ -17,7 +17,7 @@
         <div class="col-12">
           <div class="showtype-bar">
             <div class="showtype-title">
-              แมตช์<span>ที่กำลังแข่งขัน</span>
+              <span>แมตช์ที่กำลังแข่งขัน</span>
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@
         <div class="col-12">
           <div class="showtype-bar">
             <div class="showtype-title">
-              แมตช์<span>ที่กำลังเปิดรับสมัคร</span>
+              <span>แมตช์ที่กำลังเปิดรับสมัคร</span>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@
         <div class="col-12">
           <div class="showtype-bar">
             <div class="showtype-title">
-              แมตช์<span>ที่จบไปแล้ว</span>
+              <span>แมตช์ที่จบไปแล้ว</span>
             </div>
           </div>
         </div>
