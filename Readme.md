@@ -1,4 +1,29 @@
-***http://35.240.225.238:8080/#/ ดีพลอย(Deploy)
+
+### Deployment
+
+ - ### frontend http://35.240.225.238:8080/#/
+ - ### API gateway [http://35.240.225.238:3001] 
+ 
+ |Service|url|
+ | - | - |
+|User Service|[http://35.240.225.238:3002]|
+|Match Service|[http://35.240.225.238:3004]|
+|Process Service|[http://35.240.225.238:3006]|
+
+
+endpoint อยู่ข้างสุดของ Readme 
+
+
+
+
+
+
+
+
+
+
+
+
 
 # **ชื่อโครงการ** : Matching! ระบบจัดการการแข่งขันกีฬาฟุตบอล
 ***
