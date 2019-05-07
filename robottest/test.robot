@@ -25,14 +25,14 @@ Login
   Reload Page
 
 คลิกดูรายละเอียดการแข่งขัน
-  wait until page contains Element  //*[@id="app"]/div/div/div[2]/div[2]/div[3]/div/div[2]/div[2]/a
-  Click Element  //*[@id="app"]/div/div/div[2]/div[2]/div[3]/div/div[2]/div[2]/a
-  Location Should Be  http://35.240.225.238:8080/#/match-detail?match_id=13
+  wait until page contains Element  //*[@id="app"]/div/div/div[2]/div[2]/div[4]/div/div[2]/div[2]/a
+  Click Element  //*[@id="app"]/div/div/div[2]/div[2]/div[4]/div/div[2]/div[2]/a
+  Location Should Be  http://35.240.225.238:8080/#/match-detail?match_id=15
 
 คลิกสมัครการแข่งขัน
   wait until page contains element  //*[@id="app"]/div/div/div[1]/div/div/div[2]/div/span/button
   Click Button  //*[@id="app"]/div/div/div[1]/div/div/div[2]/div/span/button
-  Location Should Be  http://35.240.225.238:8080/#/MatchRegister?match_id=13
+  Location Should Be  http://35.240.225.238:8080/#/MatchRegister?match_id=15
 
 คลิกสร้างการแข่งขัน
   wait until page contains element  //*[@id="app"]/div/nav/button[3]
@@ -50,29 +50,30 @@ Login
   Login
   คลิกดูรายละเอียดการแข่งขัน
   คลิกสมัครการแข่งขัน
-  Input Text  //*[@id="team-name"]  อยากได้ถ้วย
-  Input Text  //*[@id="team-contact"]  0855555555
+  Input Text  //*[@id="team-name"]  หงส์น้อยคอยแชมป์
+  Input Text  //*[@id="team-contact"]  0943729718
   Click Element  //*[@id="regis-link"]
   Accept Dialog
-  Location Should Be  http://35.240.225.238:8080/#/match-detail?match_id=13
+  Location Should Be  http://35.240.225.238:8080/#/match-detail?match_id=15
   wait until page contains element  //*[@id="app"]/div/div/div[2]/div/div[2]/table/tbody[3]/tr/td[1]
-  Element Text Should Be  //*[@id="app"]/div/div/div[2]/div/div[2]/table/tbody[3]/tr/td[1]  อยากได้ถ้วย
+  Element Text Should Be  //*[@id="app"]/div/div/div[2]/div/div[2]/table/tbody[3]/tr/td[1]  หงส์น้อยคอยแชมป์
   # ชุดนี้คอยแก้ที่ Element ของ Math ที่จะเข้าไปสมัคร , ชื่อ เบอรืติดต่อทีม และ tbody[เลขแถวตาราง]
+  # //*[@id="app"]/div/div/div[2]/div/div[2]/table/>>>tbody[1]<<</tr/td[1]
 
 สร้างการแข่งขัน
   Login
   คลิกสร้างการแข่งขัน
-  Input Text  //*[@id="match-name"]  testmatch03
-  Input Text  //*[@id="match-address"]  BKK
-  Input Text  //*[@id="match-detail"]  ชิงเงินรางวัลกว่า 50,000 บาท
+  Input Text  //*[@id="match-name"]  Pakchong FA Cup 2019
+  Input Text  //*[@id="match-address"]  Pakchong
+  Input Text  //*[@id="match-detail"]  ชิงเงินรางวัลกว่า 30,000 บาท
   Input Text  //*[@id="match-date"]  16
   Click Button  //*[@id="create-link"]
   Confirm Action
   Location Should Be  http://35.240.225.238:8080/#/showtime
-  wait until page contains element  //*[@id="app"]/div/div/div[2]/div[2]/div[14]/div/div[1]/div[1]/h2/strong
-  Element Text Should Be  //*[@id="app"]/div/div/div[2]/div[2]/div[17]/div/div[1]/div[1]/h2/strong  testmatch03
+  wait until page contains element  //*[@id="app"]/div/div/div[2]/div[2]/div[18]/div/div[1]/div[1]/h2/strong
+  Element Text Should Be  //*[@id="app"]/div/div/div[2]/div[2]/div[18]/div/div[1]/div[1]/h2/strong  Pakchong FA Cup 2019
   						  # //*[@id="app"]/div/div/div[2]/div[2]/>>>div[15]<<</div/div[1]/div[1]/h2/strong ชื่อ Match
-  Element Text Should Be  //*[@id="app"]/div/div/div[2]/div[2]/div[17]/div/div[1]/div[2]/h5/strong  test1
+  Element Text Should Be  //*[@id="app"]/div/div/div[2]/div[2]/div[18]/div/div[1]/div[2]/h5/strong  test1
   						  # //*[@id="app"]/div/div/div[2]/div[2]/>>>div[15]<<</div/div[1]/div[2]/h5/strong ชื่อเจ้าของ 
   # ชุดนี้คอยแก้ที่ Input Text ของ Math ที่จะสร้าง และ div[ลำดับที่ Match ใหม่ถูกสร้างขึ้นมา] + ชื่อ Match กับชื่อเจ้าของ ให้ตรงกับ Input
 
